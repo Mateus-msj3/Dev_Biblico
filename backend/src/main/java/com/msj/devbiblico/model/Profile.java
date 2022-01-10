@@ -6,12 +6,12 @@ import javax.persistence.*;
 
 @Data
 @Entity
-public class Perfil {
+public class Profile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private PerfilEnum name;
+    private ProfileEnum name;
 }
