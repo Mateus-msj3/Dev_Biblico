@@ -24,12 +24,9 @@ public class Usuario {
 
     private String senha;
 
-<<<<<<< HEAD
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "usuario_perfil",
                 joinColumns = @JoinColumn(name = "id_usuario"),
                 inverseJoinColumns = @JoinColumn(name = "id_perfil"))
-=======
->>>>>>> origin/main
     private Set<Perfil> perfils = new HashSet<>();
 }
