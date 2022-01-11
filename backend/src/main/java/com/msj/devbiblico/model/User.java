@@ -18,7 +18,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String username;
 
     private String email;
 
@@ -29,4 +29,14 @@ public class User {
                 joinColumns = @JoinColumn(name = "id_user"),
                 inverseJoinColumns = @JoinColumn(name = "id_profile"))
     private Set<Profile> profiles = new HashSet<>();
+
+    public User() {
+
+    }
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 }
