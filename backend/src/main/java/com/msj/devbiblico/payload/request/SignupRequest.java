@@ -48,7 +48,7 @@ public class SignupRequest {
     return this.profile;
   }
 
-  public void setProfile(Set<String> role) {
-    this.profile = role;
+  public void setProfile(Set<String> profile) {
+    this.profile = profile;
   }
 }

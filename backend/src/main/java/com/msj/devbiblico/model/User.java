@@ -8,8 +8,8 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "user", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "name"),
+@Table(name = "users", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "username"),
         @UniqueConstraint(columnNames = "email")
 })
 public class User {
@@ -25,7 +25,7 @@ public class User {
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_profile",
+    @JoinTable(name = "user_profiles",
                 joinColumns = @JoinColumn(name = "id_user"),
                 inverseJoinColumns = @JoinColumn(name = "id_profile"))
     private Set<Profile> profiles = new HashSet<>();

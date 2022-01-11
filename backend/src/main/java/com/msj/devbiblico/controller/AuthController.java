@@ -96,7 +96,9 @@ public class AuthController {
                     .orElseThrow(() -> new RuntimeException("Error: Profile is not found"));
             profiles.add(userProfile);
         } else {
+
             strProfiles.forEach(profile -> {
+
                 switch (profile) {
                     case "admin":
                         Profile adminProfile = profileRepository.findByName(ProfileEnum.PERFIL_ADMIN)
