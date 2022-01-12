@@ -1,6 +1,6 @@
-package com.msj.devbiblico.repository;
+package com.msj.devbiblico.domain.repository;
 
-import com.msj.devbiblico.model.User;
+import com.msj.devbiblico.domain.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
