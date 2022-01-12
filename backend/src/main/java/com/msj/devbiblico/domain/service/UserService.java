@@ -24,12 +24,20 @@ public class UserService {
     }
 
     public User create(User user) {
+
+        //Adicionar validação de nome e email
+
         Long roleId = user.getRole().getId();
 
         Role role = roleRepository.findById(roleId)
                 .orElseThrow(() -> new EntidadeNaoEncontradaException(
                         String.format("Não existe cadastro de perfil com código %d", roleId)));
         user.setRole(role);
+
+        //Adicionar recurso para setar perfil padrão para usuários
+//        if(user.getRole().getId() == null) {
+//            user.setRole(value);
+//        }
 
         return userRepository.save(user);
     }
