@@ -1,6 +1,8 @@
 package com.msj.devbiblico.domain.service;
 
+import com.msj.devbiblico.domain.exception.EmailCreatedException;
 import com.msj.devbiblico.domain.exception.EntidadeNaoEncontradaException;
+import com.msj.devbiblico.domain.exception.UserCreatedException;
 import com.msj.devbiblico.domain.model.Role;
 import com.msj.devbiblico.domain.model.User;
 import com.msj.devbiblico.domain.repository.RoleRepository;
@@ -24,8 +26,19 @@ public class UserService {
     }
 
     public User create(User user) {
+        //Adicionar validação de nome
+        boolean existsUsername = userRepository.existsByUsername(user.getUsername());
 
-        //Adicionar validação de nome e email
+        if (existsUsername) {
+            throw new UserCreatedException(user.getUsername());
+        }
+
+        //Adicionar validação de email
+        boolean existsEmail = userRepository.existsByEmail(user.getEmail());
+
+        if (existsEmail) {
+            throw new EmailCreatedException(user.getEmail());
+        }
 
         Long roleId = user.getRole().getId();
 

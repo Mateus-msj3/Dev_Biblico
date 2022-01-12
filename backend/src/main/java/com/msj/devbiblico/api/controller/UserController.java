@@ -1,6 +1,8 @@
 package com.msj.devbiblico.api.controller;
 
+import com.msj.devbiblico.domain.exception.EmailCreatedException;
 import com.msj.devbiblico.domain.exception.EntidadeNaoEncontradaException;
+import com.msj.devbiblico.domain.exception.UserCreatedException;
 import com.msj.devbiblico.domain.model.User;
 import com.msj.devbiblico.domain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,10 @@ public class UserController {
             user = userService.create(user);
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body(user);
-        } catch (EntidadeNaoEncontradaException e) {
+        } catch (UserCreatedException e) {
+            return ResponseEntity.badRequest()
+                    .body(e.getMessage());
+        }catch (EmailCreatedException e) {
             return ResponseEntity.badRequest()
                     .body(e.getMessage());
         }
