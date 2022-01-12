@@ -1,9 +1,12 @@
 package com.msj.devbiblico.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -17,4 +20,10 @@ public class Role {
 
     @Enumerated(EnumType.STRING)
     private RoleEnum name;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "role")
+    private List<User> users = new ArrayList<>();
+
+
 }
