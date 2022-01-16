@@ -22,6 +22,9 @@
                     {{signing ? 'Cadastro de novo Usuário' : 'Login'}}
                 </h2>
                 <!-- <p class="text-white-50 mb-5">Por favor digite seu usuário e senha!</p> -->
+                <div class="alert alert-success" *ngIf="loginSucess">
+                  {{ loginSucess }}
+              </div>
                   <div class="alert alert-danger" *ngIf="loginError">
                       Login e/ou senha incorreto(s)
                   </div>
@@ -58,7 +61,10 @@
                             Login
                         </button>
                     
-                        <button class="btn btn-outline-light btn-lg px-4" type="button" *ngIf="signing">
+                        <button class="btn btn-outline-light btn-lg px-4" 
+                            type="button" 
+                            *ngIf="signing"
+                            (click)="register()">
                             Cadastrar
                         </button>
                 
