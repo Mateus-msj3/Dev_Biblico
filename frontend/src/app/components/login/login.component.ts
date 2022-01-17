@@ -19,11 +19,13 @@ export class LoginComponent implements OnInit {
 
   role?: Role = new Role(1);
 
-  loginError?: boolean;
+  // loginError?: boolean;
 
   loginSucess?: string;
 
   signing?: boolean;
+
+  errors?: string[];
 
   constructor(private router: Router, private authService: AuthService) { }
 
@@ -51,7 +53,7 @@ export class LoginComponent implements OnInit {
   }
 
   register() {
-
+    debugger
     const user: User = new User();
     user.username = this.username;
     user.email = this.email;
@@ -61,11 +63,13 @@ export class LoginComponent implements OnInit {
     this.authService.save(user).subscribe(response => {
       console.log('Sucesso');
       this.loginSucess = 'Cadastro realizado com sucesso! Efetue o login.';
-      this.loginError = false;
-    }, error => {
-      console.log("Erro: " + error);
-      this.loginError = true;
+      this.signing = false;
+      this.username = '';
+      this.password = '';
+      this.errors = [];
+    }, errorResponse => {
       this.loginSucess = '';
+      this.errors = errorResponse.error.errors
     })
 
   }
