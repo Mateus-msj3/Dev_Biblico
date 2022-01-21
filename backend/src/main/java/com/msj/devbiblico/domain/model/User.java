@@ -1,14 +1,12 @@
 package com.msj.devbiblico.domain.model;
 
-import com.msj.devbiblico.domain.model.Role;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
@@ -20,12 +18,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
     @Column(unique = true)
     private String username;
 
+    @NotEmpty
     @Column(unique = true)
     private String email;
 
+    @NotEmpty
     @Column
     private String password;
 

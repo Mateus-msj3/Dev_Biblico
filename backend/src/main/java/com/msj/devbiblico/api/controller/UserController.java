@@ -26,18 +26,9 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<?> saveUser(@Valid @RequestBody User user) {
-        try {
+    public ResponseEntity<User> saveUser(@Valid @RequestBody User user) {
             user = userService.create(user);
-            return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(user);
-        } catch (UserCreatedException e) {
-            return ResponseEntity.badRequest()
-                    .body(e.getMessage());
-        }catch (EmailCreatedException e) {
-            return ResponseEntity.badRequest()
-                    .body(e.getMessage());
-        }
+            return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 
 

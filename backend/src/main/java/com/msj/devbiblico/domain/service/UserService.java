@@ -26,18 +26,16 @@ public class UserService {
     }
 
     public User create(User user) {
-        //Adicionar validação de nome
         boolean existsUsername = userRepository.existsByUsername(user.getUsername());
 
         if (existsUsername) {
-            throw new UserCreatedException(user.getUsername());
+            throw new UserCreatedException("Este nome Já está em uso " + user.getUsername());
         }
 
-        //Adicionar validação de email
         boolean existsEmail = userRepository.existsByEmail(user.getEmail());
 
         if (existsEmail) {
-            throw new EmailCreatedException(user.getEmail());
+            throw new EmailCreatedException("Este email Já está em uso " + user.getEmail());
         }
 
         Long roleId = user.getRole().getId();
@@ -46,8 +44,6 @@ public class UserService {
                 .orElseThrow(() -> new ObjectNotFoundException(
                         String.format("Não existe cadastro de perfil com código %d", roleId)));
         user.setRole(role);
-
-//        }
 
         return userRepository.save(user);
     }
