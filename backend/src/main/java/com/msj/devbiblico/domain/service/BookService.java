@@ -5,6 +5,8 @@ import com.msj.devbiblico.domain.model.Book;
 import com.msj.devbiblico.domain.repository.BookRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,6 +40,14 @@ public class BookService {
             BeanUtils.copyProperties(book, currentBook.get(), "id");
         }
         return bookRepository.save(book);
+    }
+
+    public void deleteBook(Long id) {
+        try {
+            bookRepository.deleteById(id);
+        }catch (EmptyResultDataAccessException e) {
+            throw new EntidadeNaoEncontradaException("Livro não encontrado");
+        }
     }
 
 }
