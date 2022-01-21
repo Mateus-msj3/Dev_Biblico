@@ -3,6 +3,7 @@ package com.msj.devbiblico.domain.service;
 import com.msj.devbiblico.domain.exception.EntidadeNaoEncontradaException;
 import com.msj.devbiblico.domain.model.Book;
 import com.msj.devbiblico.domain.repository.BookRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,4 +31,13 @@ public class BookService {
     public Book createBook(Book book) {
         return bookRepository.save(book);
     }
+
+    public Book alterBook(Book book) {
+        Optional<Book> currentBook = bookRepository.findById(book.getId());
+        if (currentBook.isPresent()) {
+            BeanUtils.copyProperties(book, currentBook.get(), "id");
+        }
+        return bookRepository.save(book);
+    }
+
 }
