@@ -1,7 +1,7 @@
 package com.msj.devbiblico.domain.service;
 
 import com.msj.devbiblico.domain.exception.EmailCreatedException;
-import com.msj.devbiblico.domain.exception.EntidadeNaoEncontradaException;
+import com.msj.devbiblico.domain.exception.ObjectNotFoundException;
 import com.msj.devbiblico.domain.exception.UserCreatedException;
 import com.msj.devbiblico.domain.model.Role;
 import com.msj.devbiblico.domain.model.User;
@@ -43,7 +43,7 @@ public class UserService {
         Long roleId = user.getRole().getId();
 
         Role role = roleRepository.findById(roleId)
-                .orElseThrow(() -> new EntidadeNaoEncontradaException(
+                .orElseThrow(() -> new ObjectNotFoundException(
                         String.format("Não existe cadastro de perfil com código %d", roleId)));
         user.setRole(role);
 

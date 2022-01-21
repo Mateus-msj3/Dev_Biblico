@@ -1,11 +1,10 @@
 package com.msj.devbiblico.domain.service;
 
-import com.msj.devbiblico.domain.exception.EntidadeNaoEncontradaException;
+import com.msj.devbiblico.domain.exception.ObjectNotFoundException;
 import com.msj.devbiblico.domain.model.Book;
 import com.msj.devbiblico.domain.repository.BookRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +26,7 @@ public class BookService {
         if(book.isPresent()) {
             return book.get();
         }
-        return book.orElseThrow(()-> new EntidadeNaoEncontradaException("Livro não encotrado"));
+        return book.orElseThrow(()-> new ObjectNotFoundException("Livro não encontrado"));
     }
 
     public Book createBook(Book book) {
@@ -46,7 +45,7 @@ public class BookService {
         try {
             bookRepository.deleteById(id);
         }catch (EmptyResultDataAccessException e) {
-            throw new EntidadeNaoEncontradaException("Livro não encontrado");
+            throw new ObjectNotFoundException("Livro não encontrado");
         }
     }
 

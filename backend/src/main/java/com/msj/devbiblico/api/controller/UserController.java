@@ -1,7 +1,6 @@
 package com.msj.devbiblico.api.controller;
 
 import com.msj.devbiblico.domain.exception.EmailCreatedException;
-import com.msj.devbiblico.domain.exception.EntidadeNaoEncontradaException;
 import com.msj.devbiblico.domain.exception.UserCreatedException;
 import com.msj.devbiblico.domain.model.User;
 import com.msj.devbiblico.domain.service.UserService;

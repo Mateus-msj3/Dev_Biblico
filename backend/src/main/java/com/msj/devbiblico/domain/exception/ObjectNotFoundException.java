@@ -1,10 +1,10 @@
 package com.msj.devbiblico.domain.exception;
 
-public class EntidadeNaoEncontradaException extends RuntimeException {
+public class ObjectNotFoundException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    public EntidadeNaoEncontradaException(String mensagem) {
+    public ObjectNotFoundException(String mensagem) {
         super(mensagem);
     }
 
