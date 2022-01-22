@@ -4,9 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
@@ -18,15 +16,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
+    @NotEmpty(message = "{username.obrigatorio}")
     @Column(unique = true)
     private String username;
 
-    @NotEmpty
+    @NotEmpty(message = "{email.obrigatorio}")
     @Column(unique = true)
     private String email;
 
-    @NotEmpty
+    @NotEmpty(message = "{password.obrigatorio}")
     @Column
     private String password;
 
