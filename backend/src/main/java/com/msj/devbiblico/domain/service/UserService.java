@@ -39,7 +39,6 @@ public class UserService {
         }
 
         Long roleId = user.getRole().getId();
-
         Role role = roleRepository.findById(roleId)
                 .orElseThrow(() -> new ObjectNotFoundException(
                         String.format("Não existe cadastro de perfil com código %d", roleId)));

@@ -1,12 +1,12 @@
+<app-navbar></app-navbar>
 
-
-<section class="vh-100 gradient-custom" style="background-image: url('/assets/mountains-g4080a765d_1920.jpg')">
+<section class="vh-100 gradient-custom" style="background-color:#030329">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div class="card text-white" style="border-radius: 1rem; background-color: rgb(29, 29, 28)">
+          <div class="card text-dark" style="border-radius: 0.5rem; background-color: #e0e0f0; border:2px solid #131212;">
             <div class="card-body p-4">
-  
+
               <div class="mb-md-3 mt-md-2 pb-3">
                 <h2 class="fw-bold mb-2 mb-2 text-center">
                     {{signing ? 'Cadastro de novo Usuário' : 'Login'}}
@@ -24,7 +24,8 @@
                       <div class="form-group">
                           <label class="small mb-1">Usuário</label>
                           <input type="text" name="username"
-                                 [(ngModel)]="username" 
+                                 style=" border:1px solid #000000;"
+                                 [(ngModel)]="username"
                                  autocomplete="off"
                                  class="form-control py-3 mb-3"
                                  placeholder="Digite o nome do usuário">
@@ -33,56 +34,59 @@
                       <div class="form-group">
                         <label class="small mb-1" *ngIf="signing">Email</label>
                         <input type="email" name="email"
-                               [(ngModel)]="email" 
+                               style=" border:1px solid #000000;"
+                               [(ngModel)]="email"
                                autocomplete="off"
                                class="form-control py-3 mb-3"
                                placeholder="Digite o email"
                                *ngIf="signing">
                     </div>
 
-                      
+
                       <div class="form-group">
                         <label class="small mb-1">Senha</label>
                         <input type="password" name="password"
-                               [(ngModel)]="password" 
+                               style=" border:1px solid #000000;"
+                               [(ngModel)]="password"
                                autocomplete="off"
                                class="form-control py-3 mb-3"
                                placeholder="Digite a Senha">
                     </div>
                     <div class="form-group align-items-center justify-content-between mt-4 mb-0">
-                        <button class="btn btn-outline-light btn-lg px-5" type="submit" *ngIf="!signing">
+                        <button class="btn btn-outline-dark btn-lg px-5" type="submit" *ngIf="!signing">
                             Login
                         </button>
-                    
-                        <button class="btn btn-outline-light btn-lg px-4" 
-                            type="button" 
+
+                        <button class="btn btn-outline-dark btn-lg px-4"
+                            type="button"
                             *ngIf="signing"
                             (click)="register()">
                             Cadastrar
                         </button>
-                
+
                         <button class="btn btn-danger btn-lg px-4"
-                            style="margin-left: 5px;" 
-                            type="button" 
+                            style="margin-left: 5px;"
+                            type="button"
                             *ngIf="signing"
                             (click)="cancelSigning($event)">
                             Cancelar
                         </button>
-                    </div>    
+                    </div>
                   </form>
 
               </div>
-  
+
               <div>
-                <p class="mb-0 text-center">Não tem conta? 
-                    <a href="#" class="text-white-50 fw-bold" (click)="prepareSigning($event)">
+                <p class="mb-0 text-center">Não tem conta?
+                    <a href="#" class="text-dark-50 fw-bold" (click)="prepareSigning($event)">
                     Cadastre-se</a>
                 </p>
               </div>
-  
+
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+  <app-footer></app-footer>
