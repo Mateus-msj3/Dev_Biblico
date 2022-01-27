@@ -24,11 +24,6 @@ public class BookController {
         return bookService.allBooks();
     }
 
-//    @GetMapping("/{id}")
-//    public Book findById(@PathVariable Long id) {
-//        return bookService.bookId(id);
-//    }
-
     @GetMapping("/{id}")
     public ResponseEntity<Book> findById(@PathVariable Long id) {
         Book book = bookService.bookId(id);

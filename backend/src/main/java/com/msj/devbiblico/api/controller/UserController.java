@@ -1,7 +1,5 @@
 package com.msj.devbiblico.api.controller;
 
-import com.msj.devbiblico.domain.exception.EmailCreatedException;
-import com.msj.devbiblico.domain.exception.UserCreatedException;
 import com.msj.devbiblico.domain.model.User;
 import com.msj.devbiblico.domain.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +23,23 @@ public class UserController {
         return userService.all();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<User> findById(@PathVariable Long id) {
+        User user = userService.userId(id);
+        return ResponseEntity.ok().body(user);
+    }
+
     @PostMapping
     public ResponseEntity<User> saveUser(@Valid @RequestBody User user) {
             user = userService.create(user);
             return ResponseEntity.status(HttpStatus.CREATED).body(user);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) {
+        user.setId(id);
+        user = userService.alterUser(user);
+        return ResponseEntity.ok(user);
     }
 
 

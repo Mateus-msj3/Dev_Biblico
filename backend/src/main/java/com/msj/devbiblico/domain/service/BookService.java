@@ -9,6 +9,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -34,11 +35,15 @@ public class BookService {
     }
 
     public Book alterBook(Book book) {
-        Optional<Book> currentBook = bookRepository.findById(book.getId());
-        if (currentBook.isPresent()) {
-            BeanUtils.copyProperties(book, currentBook.get(), "id");
+        try {
+            Optional<Book> currentBook = bookRepository.findById(book.getId());
+            if (currentBook != null) {
+                BeanUtils.copyProperties(book, currentBook.get(), "id");
+            }
+            return bookRepository.save(book);
+        } catch(NoSuchElementException e) {
+            throw new ObjectNotFoundException("Livro não encontrado");
         }
-        return bookRepository.save(book);
     }
 
     public void deleteBook(Long id) {
