@@ -1,6 +1,7 @@
 package com.msj.devbiblico.domain.service;
 
 import com.msj.devbiblico.domain.exception.EmailCreatedException;
+import com.msj.devbiblico.domain.exception.ObjectInUseException;
 import com.msj.devbiblico.domain.exception.ObjectNotFoundException;
 import com.msj.devbiblico.domain.exception.UserCreatedException;
 import com.msj.devbiblico.domain.model.Book;
@@ -10,6 +11,8 @@ import com.msj.devbiblico.domain.repository.RoleRepository;
 import com.msj.devbiblico.domain.repository.UserRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -66,12 +69,21 @@ public class UserService {
     public User alterUser(User user) {
         try {
             Optional<User> currentUser = userRepository.findById(user.getId());
-            if (currentUser.isPresent()) {
+            if (currentUser != null) {
                 BeanUtils.copyProperties(user, currentUser.get(), "id");
             }
             return userRepository.save(user);
         } catch(NoSuchElementException e) {
             throw new ObjectNotFoundException("User não encontrado");
+        }
+    }
+
+    public void deleteUser(Long id) {
+        try {
+            userRepository.deleteById(id);
+
+        }catch (EmptyResultDataAccessException e) {
+            throw new ObjectNotFoundException(String.format("Não existe usúario com o código %d", id));
         }
     }
 

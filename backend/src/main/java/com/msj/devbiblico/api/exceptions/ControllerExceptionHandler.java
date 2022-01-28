@@ -1,9 +1,6 @@
 package com.msj.devbiblico.api.exceptions;
 
-import com.msj.devbiblico.domain.exception.EmailCreatedException;
-import com.msj.devbiblico.domain.exception.ObjectNotFoundException;
-import com.msj.devbiblico.domain.exception.UserCreatedException;
-import com.msj.devbiblico.domain.exception.ValidationErrors;
+import com.msj.devbiblico.domain.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -39,6 +36,14 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(EmailCreatedException.class)
     public ResponseEntity<StandardError> emailCreated(EmailCreatedException e, HttpServletRequest request) {
+
+        StandardError standardError = new StandardError(HttpStatus.CONFLICT.value(), e.getMessage(), System.currentTimeMillis());
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(standardError);
+    }
+
+    @ExceptionHandler(ObjectInUseException.class)
+    public ResponseEntity<StandardError> objectInUse(ObjectInUseException e, HttpServletRequest request) {
 
         StandardError standardError = new StandardError(HttpStatus.CONFLICT.value(), e.getMessage(), System.currentTimeMillis());
 
