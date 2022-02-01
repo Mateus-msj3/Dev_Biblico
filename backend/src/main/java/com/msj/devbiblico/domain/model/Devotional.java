@@ -27,8 +27,8 @@ public class Devotional {
     private Integer capitulo;
 
     private String textoBiblico;
-
-    @OneToOne
+    
+    @ManyToOne()
     private Book book;
 
     @JsonIgnore
