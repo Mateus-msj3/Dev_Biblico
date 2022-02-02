@@ -1,22 +1,16 @@
 package com.msj.devbiblico.domain.service;
 
 import com.msj.devbiblico.domain.exception.EmailCreatedException;
-import com.msj.devbiblico.domain.exception.ObjectInUseException;
 import com.msj.devbiblico.domain.exception.ObjectNotFoundException;
 import com.msj.devbiblico.domain.exception.UserCreatedException;
-import com.msj.devbiblico.domain.model.Book;
 import com.msj.devbiblico.domain.model.Role;
 import com.msj.devbiblico.domain.model.User;
 import com.msj.devbiblico.domain.repository.RoleRepository;
 import com.msj.devbiblico.domain.repository.UserRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.NoSuchElementException;
