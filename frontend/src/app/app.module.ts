@@ -15,6 +15,10 @@ import {CardModule} from 'primeng/card';
 import {ChartModule} from 'primeng/chart';
 import {ButtonModule} from 'primeng/button';
 import { AdminAreaComponent } from './components/admin-area/admin-area.component';
+import {PanelModule} from 'primeng/panel';
+import {SplitterModule} from 'primeng/splitter';
+import {CarouselModule} from 'primeng/carousel';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +38,10 @@ import { AdminAreaComponent } from './components/admin-area/admin-area.component
     CardModule,
     ButtonModule,
     ChartModule,
+    PanelModule,
+    SplitterModule,
+    CarouselModule
+
   ],
   providers: [
     AuthService,
