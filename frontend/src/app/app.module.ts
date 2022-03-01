@@ -12,7 +12,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { IndexComponent } from './components/index/index.component';
 import {CardModule} from 'primeng/card';
+import {ChartModule} from 'primeng/chart';
 import {ButtonModule} from 'primeng/button';
+import { AdminAreaComponent } from './components/admin-area/admin-area.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import {ButtonModule} from 'primeng/button';
     NavbarComponent,
     FooterComponent,
     IndexComponent,
+    AdminAreaComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,7 @@ import {ButtonModule} from 'primeng/button';
     HttpClientModule,
     CardModule,
     ButtonModule,
+    ChartModule,
   ],
   providers: [
     AuthService,

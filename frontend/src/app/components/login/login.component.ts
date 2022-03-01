@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
 
-    this.router.navigate(['/home']);
+    this.router.navigate(['/admin']);
     console.log(`User: ${this.username}, Password: ${this.password}`)
 
   }
@@ -72,6 +72,10 @@ export class LoginComponent implements OnInit {
       this.errors = errorResponse.error.errors
     })
 
+  }
+
+  login() {
+    console.log('Deu certo');
   }
 
 
