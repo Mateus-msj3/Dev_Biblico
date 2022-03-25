@@ -18,6 +18,7 @@ import { AdminAreaComponent } from './components/admin-area/admin-area.component
 import {PanelModule} from 'primeng/panel';
 import {SplitterModule} from 'primeng/splitter';
 import {CarouselModule} from 'primeng/carousel';
+import { UserAreaComponent } from './components/admin-area/user-area/user-area.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import {CarouselModule} from 'primeng/carousel';
     FooterComponent,
     IndexComponent,
     AdminAreaComponent,
+    UserAreaComponent,
   ],
   imports: [
     BrowserModule,
