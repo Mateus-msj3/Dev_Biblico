@@ -13,7 +13,7 @@
       <span class="p-input-icon-right">
 <!--        <i class="pi pi-search"></i>-->
         <label>Nome</label>
-        <input pInputText type="text" />
+        <input pInputText type="text" placeholder="Nome"/>
       </span>
     </div>
 
@@ -26,7 +26,7 @@
 
       <span class="p-input-icon-right">
         <label style="display: block">Perfil</label>
-         <p-dropdown [options]="profiles" [(ngModel)]="selectedProfile" optionLabel="name"
+         <p-dropdown [options]="profiles" [(ngModel)]="selectedProfile" optionLabel="name" placeholder="Perfil"
                      [style]="{'width':'300px', 'margin-bottom': '10px', 'margin-right': '10px'}">
          </p-dropdown>
       </span>
@@ -38,22 +38,11 @@
               (click)="openNewUser()"></button>
     </div>
 
-
-  <!--                  INPUTS DE BUSCA                   -->
-
-
   <!--                  TABLE GRID                   -->
   <div class="p-grid">
     <div class="col-offset-12">
 
       <div class="card">
-
-<!--        <p-toolbar styleClass="mb-4">-->
-<!--          <ng-template pTemplate="right">-->
-<!--            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"-->
-<!--                    (click)="openNewUser()"></button>-->
-<!--          </ng-template>-->
-<!--        </p-toolbar>-->
 
         <p-table #dt [value]="teste" [rows]="10" [paginator]="true"
                  [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll"
@@ -79,7 +68,6 @@
               <th pSortableColumn="perfil">Perfil
                 <p-sortIcon field="Perfil"></p-sortIcon>
               </th>
-              <!--              <th></th>-->
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-teste>
@@ -111,40 +99,33 @@
 
       <!--                  FORMULÁRIO DE CADASTRO DE USUÁRIO (MODAL)                   -->
 
-      <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Product Details" [modal]="true"
+      <p-dialog [(visible)]="display" [style]="{width: '650px'}" header="User Details" [modal]="true"
                 styleClass="p-fluid">
         <ng-template pTemplate="content">
-          <img [src]="'assets/showcase/images/demo/product/' + teste.image" [alt]="teste.image"
-               class="product-image" *ngIf="teste.image">
           <div class="field">
-            <label for="name">Name</label>
-            <input type="text" pInputText id="name" [(ngModel)]="teste.name" required autofocus/>
-            <small class="p-error" *ngIf="submitted && !teste.name">Name is required.</small>
+            <label for="name">Nome</label>
+            <input type="text" pInputText id="name" [(ngModel)]="teste.nome" required autofocus/>
+<!--            <small class="p-error" *ngIf="submitted && !teste.nome">Name is required.</small>-->
           </div>
           <div class="field">
-            <label for="avatar">Email</label>
+            <label for="avatar">Avatar</label>
             <input type="text" pInputText id="avatar" [(ngModel)]="teste.avatar" required autofocus/>
             <!--            <small class="p-error" *ngIf="submitted && !teste.avatar">Avatar is required.</small>-->
           </div>
           <div class="field">
             <label for="email">Email</label>
             <input type="text" pInputText id="email" [(ngModel)]="teste.email" required autofocus/>
-            <small class="p-error" *ngIf="submitted && !teste.email">Email is required.</small>
+<!--            <small class="p-error" *ngIf="submitted && !teste.email">Email is required.</small>-->
           </div>
           <div class="field">
-            <label for="senha">Email</label>
+            <label for="senha">Senha</label>
             <input type="text" pInputText id="senha" [(ngModel)]="teste.senha" required autofocus/>
-            <small class="p-error" *ngIf="submitted && !teste.senha">Senha is required.</small>
+<!--            <small class="p-error" *ngIf="submitted && !teste.senha">Senha is required.</small>-->
           </div>
 
           <div class="field">
             <label>Perfil</label>
-            <p-dropdown [(ngModel)]="perfil.inventoryStatus" inputId="inventoryStatus" [options]="statuses"
-                        placeholder="Select">
-              <ng-template let-option pTemplate="item">
-                <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
-              </ng-template>
-            </p-dropdown>
+            <p-dropdown [options]="profiles" [(ngModel)]="selectedProfile" optionLabel="name"></p-dropdown>
           </div>
 
         </ng-template>

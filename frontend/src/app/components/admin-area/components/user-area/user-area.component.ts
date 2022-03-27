@@ -23,16 +23,19 @@ export class UserAreaComponent implements OnInit {
   selectedProfile: any;
   value1: any;
 
+  display: boolean = false;
+
   constructor(confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
   }
 
   openNewUser() {
-    console.log('teste')
-    this.teste = {};
-    this.submitted = false;
-    this.productDialog = true;
+    this.display = true;
+    // console.log('teste')
+    // this.teste = {};
+    // this.submitted = false;
+    // this.productDialog = true;
   }
 
   editProduct(product: any) {

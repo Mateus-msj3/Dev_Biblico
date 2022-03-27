@@ -16,6 +16,7 @@ import {FormsModule} from "@angular/forms";
 import {ConfirmationService} from "primeng/api";
 import {InputTextModule} from "primeng/inputtext";
 import {ButtonModule} from "primeng/button";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import {ButtonModule} from "primeng/button";
     DropdownModule,
     InputTextModule,
     ButtonModule,
+    BrowserAnimationsModule,
 
   ],
 
