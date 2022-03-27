@@ -12,7 +12,17 @@ app-user-area {}
   padding-top: 5px;
 }
 
-/*.container {*/
-/*  width: 1170px;*/
-/*  margin: 0 auto;*/
-/*}*/
+.container {
+  border-radius: 5px;
+  margin-top: 10px;
+  /*background-color: #cccbcb;*/
+}
+
+.gropup-buttons {
+  margin-bottom: 10px;
+}
+
+.button {
+  margin-right: 10px;
+}
+
