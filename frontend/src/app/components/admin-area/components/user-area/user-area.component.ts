@@ -52,6 +52,6 @@ export class UserAreaComponent implements OnInit {
   }
 
   saveProduct() {
-
+    console.log('teste')
   }
 }
