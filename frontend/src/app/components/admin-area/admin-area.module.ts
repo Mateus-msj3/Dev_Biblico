@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {UserAreaComponent} from "./components/user-area/user-area.component";
 import {RouterModule} from "@angular/router";
-import { NavbarAdminComponent } from './components/navbar-admin/navbar-admin.component';
+import {NavbarAdminComponent} from './components/navbar-admin/navbar-admin.component';
 import {TableModule} from "primeng/table";
 import {ToolbarModule} from "primeng/toolbar";
 import {FileUploadModule} from "primeng/fileupload";
@@ -13,9 +13,9 @@ import {RadioButtonModule} from "primeng/radiobutton";
 import {InputNumberModule} from "primeng/inputnumber";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {FormsModule} from "@angular/forms";
-import {ConfirmationServiceService} from "../../shared/services/confirmation-service.service";
 import {ConfirmationService} from "primeng/api";
-
+import {InputTextModule} from "primeng/inputtext";
+import {ButtonModule} from "primeng/button";
 
 
 @NgModule({
@@ -42,6 +42,10 @@ import {ConfirmationService} from "primeng/api";
     InputNumberModule,
     ConfirmDialogModule,
     FormsModule,
+    DropdownModule,
+    InputTextModule,
+    ButtonModule,
+
   ],
 
 

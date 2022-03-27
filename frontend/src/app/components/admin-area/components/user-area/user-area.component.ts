@@ -7,7 +7,7 @@ import {ConfirmationService} from "primeng/api";
   styleUrls: ['./user-area.component.css']
 })
 export class UserAreaComponent implements OnInit {
-
+  // teste: any = []
   teste: any = [{
     nome: "Teste",
     avatar: "Avatar",
@@ -19,6 +19,9 @@ export class UserAreaComponent implements OnInit {
   submitted: boolean = true;
   statuses: any;
   perfil: any;
+  profiles: any = [];
+  selectedProfile: any;
+  value1: any;
 
   constructor(confirmationService: ConfirmationService) { }
 
@@ -26,6 +29,7 @@ export class UserAreaComponent implements OnInit {
   }
 
   openNewUser() {
+    console.log('teste')
     this.teste = {};
     this.submitted = false;
     this.productDialog = true;
@@ -40,8 +44,6 @@ export class UserAreaComponent implements OnInit {
   }
 
   hideDialog() {
-    debugger
-    console.log('teste')
     this.productDialog = false;
     this.submitted = false;
   }

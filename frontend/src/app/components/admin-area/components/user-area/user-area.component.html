@@ -1,19 +1,46 @@
 <app-navbar-admin></app-navbar-admin>
 
-<div class="container">
+<div class="container-fluid">
+
 
   <div class="p-grid">
-    <div class="col-offset-12">
+
+    <div class="col-12 md:col-4">
       <h1>Usuários</h1>
     </div>
+
+    <div class="col-12 md:col-4 p-fluid">
+      <span class="p-input-icon-right">
+<!--        <i class="pi pi-search"></i>-->
+        <label>Nome</label>
+        <input pInputText type="text" />
+      </span>
+    </div>
+
+    <div class="col-12 md:col-4">
+      <span class="p-input-icon-right">
+<!--        <i class="pi pi-search"></i>-->
+        <label class="label">Email</label>
+        <input pInputText type="text" placeholder="Email" class="input-email"/>
+      </span>
+
+      <span class="p-input-icon-right">
+        <label style="display: block">Perfil</label>
+         <p-dropdown [options]="profiles" [(ngModel)]="selectedProfile" optionLabel="name"
+                     [style]="{'width':'300px', 'margin-bottom': '10px'}">
+         </p-dropdown>
+      </span>
+
+    </div>
+
+    <div class="col-12 md:col-4">
+      <p-button style="margin-bottom: 20px">Pesquisar</p-button>
+    </div>
+
   </div>
 
-  <!--                  INPUT DE BUSCA                   -->
+  <!--                  INPUTS DE BUSCA                   -->
 
-  <span class="p-input-icon-left">
-    <i class="pi pi-search"></i>
-    <input pInputText type="text" (input)="dt.filterGlobal($event.target, 'contains')" placeholder="Search..."/>
-  </span>
 
   <!--                  TABLE GRID                   -->
   <div class="p-grid">
@@ -21,12 +48,12 @@
 
       <div class="card">
 
-        <p-toolbar styleClass="mb-4">
-          <ng-template pTemplate="left">
-            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
-                    (click)="openNewUser()"></button>
-          </ng-template>
-        </p-toolbar>
+<!--        <p-toolbar styleClass="mb-4">-->
+<!--          <ng-template pTemplate="left">-->
+<!--            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"-->
+<!--                    (click)="openNewUser()"></button>-->
+<!--          </ng-template>-->
+<!--        </p-toolbar>-->
 
         <p-table #dt [value]="teste" [rows]="10" [paginator]="true"
                  [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll"
@@ -37,12 +64,10 @@
             <div class="flex align-items-center justify-content-between">
               <h5 class="m-0">Gerenciamento de Usuários</h5>
             </div>
+
           </ng-template>
           <ng-template pTemplate="header">
             <tr>
-<!--              <th style="width: 3rem">-->
-<!--                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>-->
-<!--              </th>-->
               <th pSortableColumn="nome">Nome
                 <p-sortIcon field="nome"></p-sortIcon>
               </th>
@@ -53,18 +78,18 @@
               <th pSortableColumn="perfil">Perfil
                 <p-sortIcon field="Perfil"></p-sortIcon>
               </th>
-<!--              <th></th>-->
+              <!--              <th></th>-->
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-teste>
             <tr>
-<!--              <td>-->
-<!--                <p-tableCheckbox [value]="teste"></p-tableCheckbox>-->
-<!--              </td>-->
+              <!--              <td>-->
+              <!--                <p-tableCheckbox [value]="teste"></p-tableCheckbox>-->
+              <!--              </td>-->
               <td>{{teste.nome}}</td>
               <td>
                 <img [src]="'assets/showcase/images/demo/product/' + teste.image" [alt]="teste.name" width="100"
-                       class="shadow-4"/></td>
+                     class="shadow-4"/></td>
               <td>{{teste.email}}</td>
               <td>{{teste.perfil}}</td>
               <td>
@@ -98,7 +123,7 @@
           <div class="field">
             <label for="avatar">Email</label>
             <input type="text" pInputText id="avatar" [(ngModel)]="teste.avatar" required autofocus/>
-<!--            <small class="p-error" *ngIf="submitted && !teste.avatar">Avatar is required.</small>-->
+            <!--            <small class="p-error" *ngIf="submitted && !teste.avatar">Avatar is required.</small>-->
           </div>
           <div class="field">
             <label for="email">Email</label>
@@ -113,7 +138,8 @@
 
           <div class="field">
             <label>Perfil</label>
-            <p-dropdown [(ngModel)]="perfil.inventoryStatus" inputId="inventoryStatus" [options]="statuses" placeholder="Select">
+            <p-dropdown [(ngModel)]="perfil.inventoryStatus" inputId="inventoryStatus" [options]="statuses"
+                        placeholder="Select">
               <ng-template let-option pTemplate="item">
                 <span [class]="'product-badge status-' + option.value">{{option.label}}</span>
               </ng-template>

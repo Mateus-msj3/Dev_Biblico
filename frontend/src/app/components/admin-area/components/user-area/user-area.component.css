@@ -1,3 +1,18 @@
-.ui-g {
-margin: 0 auto;
+app-user-area {}
+
+.input-email {
+  width: 500px;
+  margin-bottom: 5px;
+  margin-right: 10px;
 }
+
+
+.label {
+  display: block;
+  padding-top: 5px;
+}
+
+/*.container {*/
+/*  width: 1170px;*/
+/*  margin: 0 auto;*/
+/*}*/

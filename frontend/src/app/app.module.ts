@@ -20,8 +20,8 @@ import {SplitterModule} from 'primeng/splitter';
 import {CarouselModule} from 'primeng/carousel';
 import {AdminAreaModule} from "./components/admin-area/admin-area.module";
 import {AdminRoutingModule} from "./components/admin-area/admin-routing.module";
-import {ConfirmationServiceService} from "./shared/services/confirmation-service.service";
 import {ConfirmationService} from "primeng/api";
+import {InputTextModule} from "primeng/inputtext";
 
 
 @NgModule({
@@ -47,6 +47,8 @@ import {ConfirmationService} from "primeng/api";
     CarouselModule,
     AdminAreaModule,
     AdminRoutingModule,
+    InputTextModule,
+
 
   ],
   providers: [
