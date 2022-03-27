@@ -17,7 +17,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<User> allUsers() {
         return userService.all();
     }
@@ -28,7 +28,7 @@ public class UserController {
         return ResponseEntity.ok().body(user);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<User> saveUser(@Valid @RequestBody User user) {
             user = userService.create(user);
             return ResponseEntity.status(HttpStatus.CREATED).body(user);

@@ -40,9 +40,8 @@ export class LoginComponent implements OnInit {
         console.log(response)
         this.router.navigate(['/admin']);
       }, errorResponse =>{
-        this.errors = ['Erro']
+        this.errors = ['Usuário ou senhas incorretos(s). ']
       } )
-    console.log(`User: ${this.username}, Password: ${this.password}`)
 
   }
 
@@ -82,7 +81,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log('Deu certo');
   }
 
 
