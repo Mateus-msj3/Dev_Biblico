@@ -37,8 +37,11 @@ export class LoginComponent implements OnInit {
     this.authService
       .tryLogin(this.username, this.password)
       .subscribe(response => {
-        console.log(response)
+
+        const acess_token = JSON.stringify(response);
+        localStorage.setItem('acess_token', acess_token)
         this.router.navigate(['/admin']);
+
       }, errorResponse =>{
         this.errors = ['Usuário ou senhas incorretos(s). ']
       } )
