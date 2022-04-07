@@ -104,22 +104,22 @@
         <ng-template pTemplate="content">
           <div class="field">
             <label for="name">Nome</label>
-            <input type="text" pInputText id="name" [(ngModel)]="teste.nome" required autofocus/>
+            <input type="text" pInputText id="name" [(ngModel)]="user.username" required autofocus/>
 <!--            <small class="p-error" *ngIf="submitted && !teste.nome">Name is required.</small>-->
           </div>
-          <div class="field">
-            <label for="avatar">Avatar</label>
-            <input type="text" pInputText id="avatar" [(ngModel)]="teste.avatar" required autofocus/>
-            <!--            <small class="p-error" *ngIf="submitted && !teste.avatar">Avatar is required.</small>-->
-          </div>
+<!--          <div class="field">-->
+<!--            <label for="avatar">Avatar</label>-->
+<!--            <input type="text" pInputText id="avatar" [(ngModel)]="user.avatar" required autofocus/>-->
+<!--            &lt;!&ndash;            <small class="p-error" *ngIf="submitted && !teste.avatar">Avatar is required.</small>&ndash;&gt;-->
+<!--          </div>-->
           <div class="field">
             <label for="email">Email</label>
-            <input type="text" pInputText id="email" [(ngModel)]="teste.email" required autofocus/>
+            <input type="text" pInputText id="email" [(ngModel)]="user.email" required autofocus/>
 <!--            <small class="p-error" *ngIf="submitted && !teste.email">Email is required.</small>-->
           </div>
           <div class="field">
             <label for="senha">Senha</label>
-            <input type="text" pInputText id="senha" [(ngModel)]="teste.senha" required autofocus/>
+            <input type="text" pInputText id="senha" [(ngModel)]="user.password" required autofocus/>
 <!--            <small class="p-error" *ngIf="submitted && !teste.senha">Senha is required.</small>-->
           </div>
 
@@ -134,7 +134,7 @@
           <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
                   (click)="hideDialog()"></button>
           <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
-                  (click)="saveProduct()"></button>
+                  (click)="saveUser()"></button>
         </ng-template>
       </p-dialog>
 

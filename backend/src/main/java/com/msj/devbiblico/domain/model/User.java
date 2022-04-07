@@ -1,5 +1,6 @@
 package com.msj.devbiblico.domain.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -7,9 +8,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Data
-@NoArgsConstructor
 @Entity
 @Table(name = "users")
+@NoArgsConstructor
 public class User {
 
     @Id
@@ -32,4 +33,9 @@ public class User {
     @JoinColumn(name = "role_id")
     private Role role;
 
+//    public User(Role role) {
+//        if (this.role == null) {
+//            this.role.setId(1l);
+//        }
+//    }
 }

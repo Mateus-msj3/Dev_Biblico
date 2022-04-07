@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ConfirmationService} from "primeng/api";
+import {UserService} from "../../../../shared/services/user.service";
+import {User} from "../../../../shared/models/user";
 
 @Component({
   selector: 'app-user-area',
@@ -7,7 +9,9 @@ import {ConfirmationService} from "primeng/api";
   styleUrls: ['./user-area.component.css']
 })
 export class UserAreaComponent implements OnInit {
-  // teste: any = []
+
+  user: User = new User() ;
+
   teste: any = [{
     nome: "Teste",
     avatar: "Avatar",
@@ -25,17 +29,19 @@ export class UserAreaComponent implements OnInit {
 
   display: boolean = false;
 
-  constructor(confirmationService: ConfirmationService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
+  saveUser() {
+    this.userService.save(this.user).subscribe(response => {
+      console.log(response);
+    })
+  }
+
   openNewUser() {
     this.display = true;
-    // console.log('teste')
-    // this.teste = {};
-    // this.submitted = false;
-    // this.productDialog = true;
   }
 
   editProduct(product: any) {
