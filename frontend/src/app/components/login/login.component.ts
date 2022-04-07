@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   email?: string;
 
-  role?: Role = new Role(1);
+  role?: Role;
 
   // loginError?: boolean;
 

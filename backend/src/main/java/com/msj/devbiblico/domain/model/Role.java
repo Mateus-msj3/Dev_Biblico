@@ -1,8 +1,7 @@
 package com.msj.devbiblico.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,6 +9,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -24,4 +24,11 @@ public class Role {
     @OneToMany(mappedBy = "role")
     private List<User> users = new ArrayList<>();
 
+    public Role(Long id) {
+        if (this.id == null) {
+            this.id = 1l;
+        } else {
+            this.id = id;
+        }
+    }
 }

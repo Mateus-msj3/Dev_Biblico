@@ -10,6 +10,7 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @Entity
 @Table(name = "users")
+@AllArgsConstructor
 @NoArgsConstructor
 public class User {
 
@@ -31,11 +32,9 @@ public class User {
 
     @ManyToOne()
     @JoinColumn(name = "role_id")
-    private Role role;
+    private Role role = new Role(1l);
 
-//    public User(Role role) {
-//        if (this.role == null) {
-//            this.role.setId(1l);
-//        }
+//    public User() {
+//        Role role = new Role(1l);
 //    }
 }

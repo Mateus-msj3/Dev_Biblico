@@ -9,8 +9,4 @@ export class Role {
 
     users?: User[];
 
-    constructor(id: number) {
-        this.id = id;
-
-    }
 }

@@ -44,6 +44,10 @@ export class UserAreaComponent implements OnInit {
     this.display = true;
   }
 
+  closeNewUser() {
+    this.display = false;
+  }
+
   editProduct(product: any) {
 
   }
