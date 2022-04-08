@@ -16,20 +16,18 @@ public class Devotional {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String descricao;
+    private String title;
 
-    private String urlFoto;
-
-    private String titulo;
-
-    private String versiculo;
-
-    private Integer capitulo;
-
-    private String textoBiblico;
+    private String description;
 
     @ManyToOne()
     private Book book;
+
+    private Integer chapter;
+
+    private String verse;
+
+    private String text;
 
     @JsonIgnore
     @CreationTimestamp

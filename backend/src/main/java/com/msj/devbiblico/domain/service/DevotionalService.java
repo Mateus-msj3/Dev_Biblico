@@ -37,13 +37,13 @@ public class DevotionalService {
 
     public Devotional create(Devotional devotional) {
 
-        Long bookId = devotional.getBook().getId();
+//        Long bookId = devotional.getBook().getId();
 
-        Book book = bookRepository.findById(bookId)
-                .orElseThrow(() -> new ObjectNotFoundException(
-                        String.format("Não existe cadastro de livro com código %d", bookId)));
-
-        devotional.setBook(book);
+//        Book book = bookRepository.findById(bookId)
+//                .orElseThrow(() -> new ObjectNotFoundException(
+//                        String.format("Não existe cadastro de livro com código %d", bookId)));
+//
+//        devotional.setBook(book);
 
         return devotionalRepository.save(devotional);
     }
