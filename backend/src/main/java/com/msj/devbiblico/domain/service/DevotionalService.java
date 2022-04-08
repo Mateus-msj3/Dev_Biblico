@@ -1,9 +1,7 @@
 package com.msj.devbiblico.domain.service;
 
 import com.msj.devbiblico.domain.exception.ObjectNotFoundException;
-import com.msj.devbiblico.domain.model.Book;
 import com.msj.devbiblico.domain.model.Devotional;
-import com.msj.devbiblico.domain.repository.BookRepository;
 import com.msj.devbiblico.domain.repository.DevotionalRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +18,6 @@ public class DevotionalService {
     @Autowired
     private DevotionalRepository devotionalRepository;
 
-    @Autowired
-    BookRepository bookRepository;
-
     public List<Devotional> all() {
         return  devotionalRepository.findAll();
     }
@@ -37,13 +32,13 @@ public class DevotionalService {
 
     public Devotional create(Devotional devotional) {
 
-        Long bookId = devotional.getBook().getId();
+//        Long bookId = devotional.getBook().getId();
 
-        Book book = bookRepository.findById(bookId)
-                .orElseThrow(() -> new ObjectNotFoundException(
-                        String.format("Não existe cadastro de livro com código %d", bookId)));
-
-        devotional.setBook(book);
+//        Book book = bookRepository.findById(bookId)
+//                .orElseThrow(() -> new ObjectNotFoundException(
+//                        String.format("Não existe cadastro de livro com código %d", bookId)));
+//
+//        devotional.setBook(book);
 
         return devotionalRepository.save(devotional);
     }

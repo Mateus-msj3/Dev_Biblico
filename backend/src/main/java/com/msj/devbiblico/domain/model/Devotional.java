@@ -7,6 +7,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -16,20 +18,12 @@ public class Devotional {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String descricao;
+    private String title;
 
-    private String urlFoto;
+    private String description;
 
-    private String titulo;
-
-    private String versiculo;
-
-    private Integer capitulo;
-
-    private String textoBiblico;
-
-    @ManyToOne()
-    private Book book;
+//    @ManyToOne
+//    private Book book;
 
     @JsonIgnore
     @CreationTimestamp

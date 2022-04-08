@@ -2,24 +2,29 @@ package com.msj.devbiblico.domain.model;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
-@Entity
+
 public class Book {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Abbrev abbrev;
 
-    private String nome;
+    private String name;
 
-    private String autor;
+    private String author;
 
-    @Enumerated(EnumType.STRING)
-    private LocalizacaoEnum localizacao;
+    private Integer chapters;
 
-    private Integer quantidadeCapitulos;
+    private String testament;
 
+    private Chapter chapter;
+
+    private List<Verse> verses = new ArrayList<Verse>();
 
 }
