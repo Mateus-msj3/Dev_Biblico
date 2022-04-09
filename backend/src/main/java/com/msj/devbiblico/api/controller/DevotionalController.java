@@ -18,31 +18,31 @@ public class DevotionalController {
     private DevotionalService devotionalService;
 
     @GetMapping
-    public List<Devotional> allDevotionals() {
-        return devotionalService.all();
+    public List<Devotional> findAll() {
+        return devotionalService.findAll();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Devotional> findById(@PathVariable Long id) {
-        Devotional devotional = devotionalService.devotionalId(id);
+        Devotional devotional = devotionalService.findById(id);
         return ResponseEntity.ok().body(devotional);
     }
 
     @PostMapping
-    public ResponseEntity<Devotional> saveDevotional(@Valid @RequestBody Devotional devotional) {
-        devotional = devotionalService.create(devotional);
+    public ResponseEntity<Devotional> save(@Valid @RequestBody Devotional devotional) {
+        devotional = devotionalService.save(devotional);
         return ResponseEntity.status(HttpStatus.CREATED).body(devotional);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Devotional> update(@PathVariable Long id, @RequestBody Devotional devotional) {
         devotional.setId(id);
-        devotional = devotionalService.alter(devotional);
+        devotional = devotionalService.update(devotional);
         return ResponseEntity.ok(devotional);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> remove(@PathVariable Long id) {
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         devotionalService.delete(id);
         return ResponseEntity.noContent().build();
     }

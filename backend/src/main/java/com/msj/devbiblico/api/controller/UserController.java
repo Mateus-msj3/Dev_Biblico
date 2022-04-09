@@ -18,32 +18,32 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/all")
-    public List<User> allUsers() {
-        return userService.all();
+    public List<User> findAll() {
+        return userService.findAll();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<User> findById(@PathVariable Long id) {
-        User user = userService.userId(id);
+        User user = userService.findById(id);
         return ResponseEntity.ok().body(user);
     }
 
     @PostMapping()
-    public ResponseEntity<User> saveUser(@Valid @RequestBody User user) {
-            user = userService.create(user);
+    public ResponseEntity<User> save(@Valid @RequestBody User user) {
+            user = userService.save(user);
             return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<User> update(@PathVariable Long id, @RequestBody User user) {
         user.setId(id);
-        user = userService.alterUser(user);
+        user = userService.update(user);
         return ResponseEntity.ok(user);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> remove(@PathVariable Long id) {
-        userService.deleteUser(id);
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        userService.delete(id);
         return ResponseEntity.noContent().build();
     }
 

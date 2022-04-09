@@ -5,10 +5,11 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 @Entity
@@ -22,8 +23,13 @@ public class Devotional {
 
     private String description;
 
-//    @ManyToOne
-//    private Book book;
+    private String book;
+
+    private Integer chapter;
+
+    private Integer verse;
+
+    private String text;
 
     @JsonIgnore
     @CreationTimestamp

@@ -1,4 +1,4 @@
-package com.msj.devbiblico.domain.service;
+package com.msj.devbiblico.domain.service.impl;
 
 import com.msj.devbiblico.domain.model.User;
 import com.msj.devbiblico.domain.repository.UserRepository;

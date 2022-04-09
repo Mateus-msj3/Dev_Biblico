@@ -1,6 +1,6 @@
 package com.msj.devbiblico.config;
 
-import com.msj.devbiblico.domain.service.UserDetailsServiceImpl;
+import com.msj.devbiblico.domain.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
