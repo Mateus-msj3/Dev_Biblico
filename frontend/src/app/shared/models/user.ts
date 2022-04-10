@@ -1,4 +1,3 @@
-import { Role } from './role';
 export class User {
 
     id?: number;
@@ -9,5 +8,5 @@ export class User {
 
     password?: string;
 
-    role?: Role;
+    role?: Set<number>;
 }

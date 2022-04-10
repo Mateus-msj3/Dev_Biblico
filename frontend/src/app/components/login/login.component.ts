@@ -1,8 +1,7 @@
-import { Role } from './../../shared/models/role';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { User } from 'src/app/shared/models/user';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {User} from 'src/app/shared/models/user';
+import {AuthService} from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +15,6 @@ export class LoginComponent implements OnInit {
   password?: string;
 
   email?: string;
-
-  role?: Role;
 
   // loginError?: boolean;
 
@@ -65,7 +62,6 @@ export class LoginComponent implements OnInit {
     user.username = this.username;
     user.email = this.email;
     user.password = this.password;
-    user.role = this.role
 
     this.authService.save(user).subscribe(response => {
       console.log('Sucesso');

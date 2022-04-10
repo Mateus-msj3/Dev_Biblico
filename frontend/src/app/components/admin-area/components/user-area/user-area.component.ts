@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {ConfirmationService} from "primeng/api";
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../../../shared/services/user.service";
 import {User} from "../../../../shared/models/user";
 
@@ -12,22 +11,21 @@ export class UserAreaComponent implements OnInit {
 
   user: User = new User() ;
 
-  teste: any = [{
-    nome: "Teste",
-    avatar: "Avatar",
-    email: "teste@email.com",
-    perfil: 'ADMIN'
-  }];
-  selectedProducts: any;
-  productDialog: any;
-  submitted: boolean = true;
-  statuses: any;
-  perfil: any;
-  profiles: any = [];
-  selectedProfile: any;
-  value1: any;
+  sucessDialog: boolean = false;
 
   display: boolean = false;
+
+  errorDialog: boolean = false;
+
+  errors?: String[];
+
+  profiles: any;
+
+  selectedProfile: any;
+
+  selectedUser: any;
+
+  teste: any;
 
   constructor(private userService: UserService) { }
 
@@ -35,8 +33,16 @@ export class UserAreaComponent implements OnInit {
   }
 
   saveUser() {
-    this.userService.save(this.user).subscribe(response => {
-      console.log(response);
+    this.userService.save(this.user).subscribe(sucessResponse => {
+      this.sucessDialog = true;
+      this.user.username = "";
+      this.user.email = "";
+      this.user.password = "";
+
+    }, errorResponse => {
+      console.log(errorResponse.error.errors);
+      this.errors = errorResponse.error.errors;
+      this.errorDialog = true;
     })
   }
 
@@ -48,20 +54,22 @@ export class UserAreaComponent implements OnInit {
     this.display = false;
   }
 
-  editProduct(product: any) {
+  editUser(user: User) {
 
   }
 
-  deleteProduct(product: any) {
+  deleteUser(user: User) {
 
   }
 
-  hideDialog() {
-    this.productDialog = false;
-    this.submitted = false;
+  closeDialogSuccess() {
+    this.sucessDialog = false;
+    this.display = false;
   }
 
-  saveProduct() {
-    console.log('teste')
+  closeDialogError() {
+      this.errorDialog = false;
   }
+
+
 }

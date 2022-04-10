@@ -46,7 +46,7 @@
 
         <p-table #dt [value]="teste" [rows]="10" [paginator]="true"
                  [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll"
-                 [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
+                 [(selection)]="selectedUser" [rowHover]="true" dataKey="id"
                  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                  [showCurrentPageReport]="true">
 
@@ -83,15 +83,15 @@
               <td>{{teste.perfil}}</td>
               <td>
                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
-                        (click)="editProduct(teste)"></button>
+                        (click)="editUser(user)"></button>
                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                        (click)="deleteProduct(teste)"></button>
+                        (click)="deleteUser(user)"></button>
               </td>
             </tr>
           </ng-template>
           <ng-template pTemplate="summary">
             <div class="flex align-items-center justify-content-between">
-              In total there are {{teste ? teste.length : 0 }} users.
+<!--              In total there are {{user ? user.length : 0 }} users.-->
             </div>
           </ng-template>
         </p-table>
@@ -102,24 +102,21 @@
       <p-dialog [(visible)]="display" [style]="{width: '650px'}" header="User Details" [modal]="true"
                 styleClass="p-fluid">
         <ng-template pTemplate="content">
+
           <div class="field">
             <label for="name">Nome</label>
-            <input type="text" pInputText id="name" [(ngModel)]="user.username" required autofocus/>
+            <input type="text" pInputText id="name" [(ngModel)]="user.username" />
 <!--            <small class="p-error" *ngIf="submitted && !teste.nome">Name is required.</small>-->
           </div>
-<!--          <div class="field">-->
-<!--            <label for="avatar">Avatar</label>-->
-<!--            <input type="text" pInputText id="avatar" [(ngModel)]="user.avatar" required autofocus/>-->
-<!--            &lt;!&ndash;            <small class="p-error" *ngIf="submitted && !teste.avatar">Avatar is required.</small>&ndash;&gt;-->
-<!--          </div>-->
+
           <div class="field">
             <label for="email">Email</label>
-            <input type="text" pInputText id="email" [(ngModel)]="user.email" required autofocus/>
+            <input type="text" pInputText id="email" [(ngModel)]="user.email" />
 <!--            <small class="p-error" *ngIf="submitted && !teste.email">Email is required.</small>-->
           </div>
           <div class="field">
             <label for="senha">Senha</label>
-            <input type="text" pInputText id="senha" [(ngModel)]="user.password" required autofocus/>
+            <input type="text" pInputText id="senha" [(ngModel)]="user.password"/>
 <!--            <small class="p-error" *ngIf="submitted && !teste.senha">Senha is required.</small>-->
           </div>
 
@@ -138,7 +135,29 @@
         </ng-template>
       </p-dialog>
 
-      <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+      <!-- Modal de Sucesso de Cadastro do Usuário -->
+
+      <p-dialog  position="top"  [(visible)]="sucessDialog" [style]="{width: '450px'}">
+        <ng-template pTemplate="header">
+          Sucess
+        </ng-template>
+        Usuário Salvo com sucesso!
+        <ng-template pTemplate="footer">
+          <button pButton pRipple label="Ok" icon="pi pi-check" class="p-button-success" (click)="closeDialogSuccess()"></button>
+        </ng-template>
+      </p-dialog>
+
+      <!-- Modal de Erro de Cadastro do Usuário -->
+
+      <p-dialog  position="top"  [(visible)]="errorDialog" [style]="{width: '550px'}" *ngFor="let erro of errors">
+        <ng-template pTemplate="header">
+          Error
+        </ng-template>
+          {{ erro }}
+        <ng-template pTemplate="footer">
+          <button pButton pRipple label="Ok" icon="pi pi-check" class="p-button-danger" (click)="closeDialogError()"></button>
+        </ng-template>
+      </p-dialog>
 
     </div>
   </div>

@@ -22,6 +22,8 @@ import {AdminAreaModule} from "./components/admin-area/admin-area.module";
 import {AdminRoutingModule} from "./components/admin-area/admin-routing.module";
 import {ConfirmationService} from "primeng/api";
 import {InputTextModule} from "primeng/inputtext";
+import { ErrorDialogComponent } from './shared/components/error-dialog/error-dialog.component';
+import {DialogModule} from "primeng/dialog";
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import {InputTextModule} from "primeng/inputtext";
     FooterComponent,
     IndexComponent,
     AdminAreaComponent,
+    ErrorDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import {InputTextModule} from "primeng/inputtext";
     AdminAreaModule,
     AdminRoutingModule,
     InputTextModule,
+    DialogModule,
 
 
   ],

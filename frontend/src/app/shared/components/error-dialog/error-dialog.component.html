@@ -1,0 +1,9 @@
+<p-dialog  position="top"  [(visible)]="errorDialog" [style]="{width: '450px'}">
+  <ng-template pTemplate="header">
+    Sucess
+  </ng-template>
+  Usuário Salvo com sucesso!
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Ok" icon="pi pi-check" class="p-button-success" (click)="closeDialogError()"></button>
+  </ng-template>
+</p-dialog>
