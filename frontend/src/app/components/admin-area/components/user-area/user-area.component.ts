@@ -14,9 +14,7 @@ export class UserAreaComponent implements OnInit {
 
   users: User[] = [];
 
-  roles: roleEnum[] = [];
-
-  // let colorValueArray = Object.values(roleEnum);
+  roles =  this.getEnumToArray(roleEnum);
 
   selectedRole?: roleEnum;
 
@@ -43,7 +41,9 @@ export class UserAreaComponent implements OnInit {
       this.users = response;
     });
 
-    this.roles = []
+    this.roles
+
+    console.log(this.roles)
   }
 
   saveUser() {
