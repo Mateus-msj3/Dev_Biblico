@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../../../shared/services/user.service";
 import {User} from "../../../../shared/models/user";
+import {roleEnum} from "../../../../shared/models/roleEnum";
 
 @Component({
   selector: 'app-user-area',
@@ -10,6 +11,14 @@ import {User} from "../../../../shared/models/user";
 export class UserAreaComponent implements OnInit {
 
   user: User = new User() ;
+
+  users: User[] = [];
+
+  roles: roleEnum[] = [];
+
+  // let colorValueArray = Object.values(roleEnum);
+
+  selectedRole?: roleEnum;
 
   sucessDialog: boolean = false;
 
@@ -30,6 +39,11 @@ export class UserAreaComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    this.userService.getUser().subscribe(response => {
+      this.users = response;
+    });
+
+    this.roles = []
   }
 
   saveUser() {
@@ -70,6 +84,15 @@ export class UserAreaComponent implements OnInit {
   closeDialogError() {
       this.errorDialog = false;
   }
+
+  getEnumToArray(type: any): Array<any> {
+    let enumToArray = new Array();
+    for (let key in type) {
+      enumToArray.push(type[key]);
+    }
+    return enumToArray;
+  }
+
 
 
 }

@@ -44,7 +44,7 @@
 
       <div class="card">
 
-        <p-table #dt [value]="teste" [rows]="10" [paginator]="true"
+        <p-table #dt [value]="users" [rows]="10" [paginator]="true"
                  [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll"
                  [(selection)]="selectedUser" [rowHover]="true" dataKey="id"
                  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -58,29 +58,22 @@
 
           <ng-template pTemplate="header">
             <tr>
-              <th pSortableColumn="nome">Nome
-                <p-sortIcon field="nome"></p-sortIcon>
+              <th pSortableColumn="username">Name
+                <p-sortIcon field="username"></p-sortIcon>
               </th>
-              <th>Avatar</th>
               <th pSortableColumn="email">Email
                 <p-sortIcon field="email"></p-sortIcon>
               </th>
-              <th pSortableColumn="perfil">Perfil
-                <p-sortIcon field="Perfil"></p-sortIcon>
+              <th pSortableColumn="role">Role
+                <p-sortIcon field="role"></p-sortIcon>
               </th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-teste>
+          <ng-template pTemplate="body" let-user>
             <tr>
-              <!--              <td>-->
-              <!--                <p-tableCheckbox [value]="teste"></p-tableCheckbox>-->
-              <!--              </td>-->
-              <td>{{teste.nome}}</td>
-              <td>
-                <img [src]="'assets/showcase/images/demo/product/' + teste.image" [alt]="teste.name" width="100"
-                     class="shadow-4"/></td>
-              <td>{{teste.email}}</td>
-              <td>{{teste.perfil}}</td>
+              <td>{{user.username}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.roleEnum}}</td>
               <td>
                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
                         (click)="editUser(user)"></button>
@@ -122,7 +115,7 @@
 
           <div class="field">
             <label>Perfil</label>
-            <p-dropdown [options]="profiles" [(ngModel)]="selectedProfile" optionLabel="name"></p-dropdown>
+            <p-dropdown [options]="roles" [(ngModel)]="selectedRole" optionLabel="name" optionValue=""></p-dropdown>
           </div>
 
         </ng-template>
@@ -151,6 +144,7 @@
 
       <p-dialog  position="top"  [(visible)]="errorDialog" [style]="{width: '550px'}" *ngFor="let erro of errors">
         <ng-template pTemplate="header">
+<!--          <i class="pi pi-check" style="color:red"></i>-->
           Error
         </ng-template>
           {{ erro }}

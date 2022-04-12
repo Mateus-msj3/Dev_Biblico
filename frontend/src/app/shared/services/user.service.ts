@@ -15,6 +15,10 @@ export class UserService {
 
   }
 
+  getUser():Observable<User[]> {
+    return this.http.get<User[]>(this.apiURL);
+  }
+
   save(user: User): Observable<User> {
     return this.http.post<User>(this.apiURL, user);
   }

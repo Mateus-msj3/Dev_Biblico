@@ -1,3 +1,5 @@
+import {roleEnum} from "./roleEnum";
+
 export class User {
 
     id?: number;
@@ -8,5 +10,5 @@ export class User {
 
     password?: string;
 
-    role?: Set<number>;
+    roleEnum?: roleEnum;
 }
