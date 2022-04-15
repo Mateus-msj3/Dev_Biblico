@@ -87,8 +87,8 @@ export class UserAreaComponent implements OnInit {
   getEnumToArray(type: any): Array<any> {
     debugger
     let enumToArray = new Array();
-    for (let key in type) {
-      enumToArray.push(type[key]);
+    for (let value in type) {
+      enumToArray.push(type[value]);
     }
     return enumToArray;
   }

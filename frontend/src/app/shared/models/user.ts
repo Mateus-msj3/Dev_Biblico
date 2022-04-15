@@ -10,5 +10,5 @@ export class User {
 
     password?: string;
 
-    roleEnum?: roleEnum;
+    roles: Set<number> = new Set<number>();
 }
