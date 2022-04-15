@@ -16,7 +16,7 @@ export class UserAreaComponent implements OnInit {
 
   roles =  this.getEnumToArray(roleEnum);
 
-  selectedRole?: roleEnum;
+  selectedRole?: any;
 
   sucessDialog: boolean = false;
 
@@ -34,14 +34,13 @@ export class UserAreaComponent implements OnInit {
 
   teste: any;
 
+
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
     this.userService.getUser().subscribe(response => {
       this.users = response;
     });
-
-    this.roles
 
     console.log(this.roles)
   }
@@ -86,11 +85,18 @@ export class UserAreaComponent implements OnInit {
   }
 
   getEnumToArray(type: any): Array<any> {
+    debugger
     let enumToArray = new Array();
     for (let key in type) {
       enumToArray.push(type[key]);
     }
     return enumToArray;
+  }
+
+  getValueEnum(data: any) {
+    debugger
+    return data.value;
+    console.log(data.value)
   }
 
 

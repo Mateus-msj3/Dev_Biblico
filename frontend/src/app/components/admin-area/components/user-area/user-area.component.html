@@ -115,7 +115,9 @@
 
           <div class="field">
             <label>Perfil</label>
-            <p-dropdown [options]="roles" [(ngModel)]="selectedRole" optionLabel="name" optionValue=""></p-dropdown>
+            <p-dropdown [options]="roles"
+                        [(ngModel)]="user.roleEnum" optionLabel="" optionValue="ROLE_USER">
+            </p-dropdown>
           </div>
 
         </ng-template>
