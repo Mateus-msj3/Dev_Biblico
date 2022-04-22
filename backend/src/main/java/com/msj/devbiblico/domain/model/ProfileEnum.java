@@ -1,6 +1,6 @@
 package com.msj.devbiblico.domain.model;
 
-public enum RoleEnum {
+public enum ProfileEnum {
 
     ADMIN(1, "ROLE_ADMIN"),
     USER(2, "ROLE_USER");
@@ -9,7 +9,7 @@ public enum RoleEnum {
 
     private String name;
 
-    RoleEnum(int code, String name) {
+    ProfileEnum(int code, String name) {
         this.code = code;
         this.name = name;
     }
@@ -22,12 +22,12 @@ public enum RoleEnum {
         return name;
     }
 
-    public static RoleEnum toEnum(Integer code) {
+    public static ProfileEnum toEnum(Integer code) {
         if (code == null) {
             return null;
         }
 
-        for (RoleEnum role : RoleEnum.values()) {
+        for (ProfileEnum role : ProfileEnum.values()) {
             if (code.equals(role.getCode())) {
                 return role;
             }

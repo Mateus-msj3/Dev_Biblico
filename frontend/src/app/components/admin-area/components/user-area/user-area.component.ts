@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../../../shared/services/user.service";
 import {User} from "../../../../shared/models/user";
 import {roleEnum} from "../../../../shared/models/roleEnum";
+import {Role} from "../../../../shared/models/role";
 
 @Component({
   selector: 'app-user-area',
@@ -14,9 +15,7 @@ export class UserAreaComponent implements OnInit {
 
   users: User[] = [];
 
-  roles =  this.getEnumToArray(roleEnum);
-
-  selectedRole?: any;
+  roles: Role[] = [];
 
   sucessDialog: boolean = false;
 
@@ -26,35 +25,39 @@ export class UserAreaComponent implements OnInit {
 
   errors?: String[];
 
+  selectedUser: any;
+
   profiles: any;
 
   selectedProfile: any;
 
-  selectedUser: any;
+  constructor(private userService: UserService) {
 
-  teste: any;
+    this.roles = [
+      {name: "ROLE_ADMIN"},
+      {name: "ROLE_USER"}
+    ];
 
-
-  constructor(private userService: UserService) { }
+  }
 
   ngOnInit(): void {
+
     this.userService.getUser().subscribe(response => {
       this.users = response;
     });
 
-    console.log(this.roles)
   }
 
   saveUser() {
     this.userService.save(this.user).subscribe(sucessResponse => {
+      console.log(sucessResponse)
+      console.log(this.user)
       this.sucessDialog = true;
       this.user.username = "";
       this.user.email = "";
       this.user.password = "";
 
     }, errorResponse => {
-      console.log(errorResponse.error.errors);
-      this.errors = errorResponse.error.errors;
       this.errorDialog = true;
     })
   }
@@ -84,21 +87,8 @@ export class UserAreaComponent implements OnInit {
       this.errorDialog = false;
   }
 
-  getEnumToArray(type: any): Array<any> {
-    debugger
-    let enumToArray = new Array();
-    for (let value in type) {
-      enumToArray.push(type[value]);
-    }
-    return enumToArray;
+  onChangeValueRole(event: any) {
+    event.value
   }
-
-  getValueEnum(data: any) {
-    debugger
-    return data.value;
-    console.log(data.value)
-  }
-
-
 
 }

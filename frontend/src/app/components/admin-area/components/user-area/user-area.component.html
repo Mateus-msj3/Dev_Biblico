@@ -73,7 +73,7 @@
             <tr>
               <td>{{user.username}}</td>
               <td>{{user.email}}</td>
-              <td>{{user.roleEnum}}</td>
+              <td>{{user.role}}</td>
               <td>
                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
                         (click)="editUser(user)"></button>
@@ -116,7 +116,10 @@
           <div class="field">
             <label>Perfil</label>
             <p-dropdown [options]="roles"
-                        [(ngModel)]="user.roles" optionLabel="" optionValue="ROLE_USER">
+                        [(ngModel)]="user.role"
+                        (onChange)="onChangeValueRole($event)"
+                        optionLabel="name"
+                        optionValue="name">
             </p-dropdown>
           </div>
 
