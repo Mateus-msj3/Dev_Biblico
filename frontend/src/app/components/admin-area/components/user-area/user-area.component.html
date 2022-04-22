@@ -73,7 +73,7 @@
             <tr>
               <td>{{user.username}}</td>
               <td>{{user.email}}</td>
-              <td>{{user.roleEnum}}</td>
+              <td>{{user.role}}</td>
               <td>
                 <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
                         (click)="editUser(user)"></button>
@@ -114,11 +114,21 @@
           </div>
 
           <div class="field">
-            <label>Perfil</label>
-            <p-dropdown [options]="roles"
-                        [(ngModel)]="user.roles" optionLabel="" optionValue="ROLE_USER">
-            </p-dropdown>
+            <label for="role">Role</label>
+            <input type="text" pInputText id="role" [(ngModel)]="user.role"/>
+            <!--            <small class="p-error" *ngIf="submitted && !teste.senha">Senha is required.</small>-->
           </div>
+
+<!--          <div class="field">-->
+<!--            <label>Perfil</label>-->
+<!--            <p-dropdown [options]="roles"-->
+<!--                        [(ngModel)]="user.role"-->
+<!--                        (onChange)="onChangeValueRole($event)"-->
+
+<!--                        optionLabel=""-->
+<!--                        optionValue="role">-->
+<!--            </p-dropdown>-->
+<!--          </div>-->
 
         </ng-template>
 
