@@ -75,8 +75,11 @@
               <td>{{user.email}}</td>
               <td>{{user.role}}</td>
               <td>
-                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
-                        (click)="editUser(user)"></button>
+                <button pButton pRipple icon="pi pi-pencil"
+                        class="p-button-rounded p-button-success mr-2"
+                        (click)="openEditUser()"
+                        routerLink="/users/{{ user.id }}">
+                </button>
                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
                         (click)="deleteUser(user)"></button>
               </td>
@@ -139,7 +142,8 @@
         <ng-template pTemplate="header">
           Sucess
         </ng-template>
-        Usuário Salvo com sucesso!
+        {{ user.id ? "Usuário Atualizado com sucesso!" : " Usuário Salvo com sucesso! "}}
+
         <ng-template pTemplate="footer">
           <button pButton pRipple label="Ok" icon="pi pi-check" class="p-button-success" (click)="closeDialogSuccess()"></button>
         </ng-template>

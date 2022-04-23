@@ -8,6 +8,8 @@ import {AdminAreaComponent} from "./admin-area.component";
 const routes: Routes = [
   // {path: 'admin', component: AdminAreaComponent, canActivate: [AuthGuard]},
   {path: 'users', component: UserAreaComponent, canActivate: [AuthGuard]},
+  // {path: 'users/new', component: UserAreaComponent, canActivate: [AuthGuard]},
+  {path: 'users/:id', component: UserAreaComponent, canActivate: [AuthGuard]},
 
 ];
 

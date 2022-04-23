@@ -3,6 +3,7 @@ import {UserService} from "../../../../shared/services/user.service";
 import {User} from "../../../../shared/models/user";
 import {roleEnum} from "../../../../shared/models/roleEnum";
 import {Role} from "../../../../shared/models/role";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-user-area',
@@ -11,7 +12,7 @@ import {Role} from "../../../../shared/models/role";
 })
 export class UserAreaComponent implements OnInit {
 
-  user: User = new User() ;
+  user: User = new User();
 
   users: User[] = [];
 
@@ -31,7 +32,9 @@ export class UserAreaComponent implements OnInit {
 
   selectedProfile: any;
 
-  constructor(private userService: UserService) {
+  id?: number;
+
+  constructor(private userService: UserService, private activatedRoute: ActivatedRoute) {
 
     this.roles = [
       {name: "ROLE_ADMIN"},
@@ -41,26 +44,51 @@ export class UserAreaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getUsers();
+    this.paramsRoute();
+  }
 
+  paramsRoute() {
+    this.activatedRoute.params.subscribe(value => {
+      if (value && value.id) {
+        this.id = value.id;
+        this.userService.getuserById(this.id).subscribe(sucessResponse => {
+          this.user = sucessResponse;
+        }, errorResponse => {
+          this.user = new User();
+        })
+      }
+    });
+  }
+
+  getUsers() {
     this.userService.getUser().subscribe(response => {
       this.users = response;
     });
-
   }
 
   saveUser() {
-    this.userService.save(this.user).subscribe(sucessResponse => {
-      console.log(sucessResponse)
-      console.log(this.user)
-      this.sucessDialog = true;
-      this.user.username = "";
-      this.user.email = "";
-      this.user.password = "";
+    if (!this.user.id) {
+      this.userService.save(this.user).subscribe(sucessResponse => {
+        this.sucessDialog = true;
+        this.clearFormNewUser();
+        this.getUsers();
+      }, errorResponse => {
+        this.errorDialog = true;
+      });
+    } else {
+      this.editUser(this.user);
+      this.getUsers()
+    }
 
-    }, errorResponse => {
-      this.errorDialog = true;
-    })
   }
+
+  clearFormNewUser() {
+    this.user.username = "";
+    this.user.email = "";
+    this.user.password = "";
+  }
+
 
   openNewUser() {
     this.display = true;
@@ -70,9 +98,25 @@ export class UserAreaComponent implements OnInit {
     this.display = false;
   }
 
-  editUser(user: User) {
-
+  openEditUser() {
+    this.display = true;
+    this.setValueEditFormUser();
   }
+
+  editUser(user: User) {
+    this.userService.update(this.user).subscribe(sucessResponse => {
+      this.sucessDialog = true;
+    }, errorResponse => {
+      this.errorDialog = true;
+    });
+  }
+
+  setValueEditFormUser() {
+    this.user.username = this.user.username;
+    this.user.email = this.user.email;
+    this.user.password = this.user.password;
+  }
+
 
   deleteUser(user: User) {
 
@@ -84,7 +128,7 @@ export class UserAreaComponent implements OnInit {
   }
 
   closeDialogError() {
-      this.errorDialog = false;
+    this.errorDialog = false;
   }
 
   onChangeValueRole(event: any) {

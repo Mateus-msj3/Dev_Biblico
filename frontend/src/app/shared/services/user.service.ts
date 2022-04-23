@@ -19,7 +19,15 @@ export class UserService {
     return this.http.get<User[]>(this.apiURL);
   }
 
+  getuserById(id: number | undefined): Observable<User> {
+    return this.http.get<User>(this.apiURL +`/${id}`);
+  }
+
   save(user: User): Observable<User> {
     return this.http.post<User>(this.apiURL, user);
   }
-}
+
+  update(user: User): Observable<User> {
+    return this.http.put<User>(this.apiURL +`/${user.id}`, user);
+  }
+ }
