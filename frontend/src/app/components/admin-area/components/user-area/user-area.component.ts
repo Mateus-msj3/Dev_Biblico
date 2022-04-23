@@ -23,9 +23,11 @@ export class UserAreaComponent implements OnInit {
 
   errorDialog: boolean = false;
 
+  deleteDialog: boolean = false;
+
   errors?: String[];
 
-  selectedUser: any;
+  selectedUser!: User;
 
   profiles: any;
 
@@ -99,9 +101,9 @@ export class UserAreaComponent implements OnInit {
     this.display = false;
   }
 
-  openEditUser() {
+  openEditUser(user: User) {
     this.display = true;
-    this.setValueEditFormUser();
+    this.setValueEditFormUser(user);
   }
 
   editUser(user: User) {
@@ -112,14 +114,29 @@ export class UserAreaComponent implements OnInit {
     });
   }
 
-  setValueEditFormUser() {
-    this.user.username = this.user.username;
-    this.user.email = this.user.email;
-    this.user.password = this.user.password;
+  setValueEditFormUser(user: User) {
+    this.user.username = user.username;
+    this.user.email = user.email;
+    this.user.password = user.password;
+  }
+
+  openDeleteUser(user: User) {
+    this.deleteDialog = true;
+    this.selectedUser = user;
+  }
+
+  closeDeleteUser() {
+    this.deleteDialog = false;
   }
 
   deleteUser(user: User) {
-
+    this.userService.delete(this.selectedUser).subscribe(sucessResponse => {
+      this.sucessDialog = true;
+      this.closeDeleteUser();
+      this.getUsers();
+    }, error => {
+      this.errorDialog = true;
+    })
   }
 
   closeDialogSuccess() {

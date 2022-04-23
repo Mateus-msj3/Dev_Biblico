@@ -22,7 +22,6 @@ import {AdminAreaModule} from "./components/admin-area/admin-area.module";
 import {AdminRoutingModule} from "./components/admin-area/admin-routing.module";
 import {ConfirmationService} from "primeng/api";
 import {InputTextModule} from "primeng/inputtext";
-import { ErrorDialogComponent } from './shared/components/error-dialog/error-dialog.component';
 import {DialogModule} from "primeng/dialog";
 
 
@@ -35,7 +34,6 @@ import {DialogModule} from "primeng/dialog";
     FooterComponent,
     IndexComponent,
     AdminAreaComponent,
-    ErrorDialogComponent,
   ],
   imports: [
     BrowserModule,
