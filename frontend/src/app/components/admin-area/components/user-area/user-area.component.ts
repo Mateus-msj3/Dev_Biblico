@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../../../shared/services/user.service";
 import {User} from "../../../../shared/models/user";
-import {roleEnum} from "../../../../shared/models/roleEnum";
 import {Role} from "../../../../shared/models/role";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-area',
@@ -34,7 +33,9 @@ export class UserAreaComponent implements OnInit {
 
   id?: number;
 
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute) {
+  constructor(private userService: UserService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
 
     this.roles = [
       {name: "ROLE_ADMIN"},
@@ -50,8 +51,8 @@ export class UserAreaComponent implements OnInit {
 
   paramsRoute() {
     this.activatedRoute.params.subscribe(value => {
-      if (value && value.id) {
-        this.id = value.id;
+      this.id = value['id'];
+      if (value.id) {
         this.userService.getuserById(this.id).subscribe(sucessResponse => {
           this.user = sucessResponse;
         }, errorResponse => {
@@ -89,9 +90,9 @@ export class UserAreaComponent implements OnInit {
     this.user.password = "";
   }
 
-
   openNewUser() {
     this.display = true;
+    this.router.navigate(['/users/new']);
   }
 
   closeNewUser() {
@@ -116,7 +117,6 @@ export class UserAreaComponent implements OnInit {
     this.user.email = this.user.email;
     this.user.password = this.user.password;
   }
-
 
   deleteUser(user: User) {
 

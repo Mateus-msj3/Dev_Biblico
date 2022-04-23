@@ -78,7 +78,7 @@
                 <button pButton pRipple icon="pi pi-pencil"
                         class="p-button-rounded p-button-success mr-2"
                         (click)="openEditUser()"
-                        routerLink="/users/{{ user.id }}">
+                        routerLink="/users/edit/{{ user.id }}">
                 </button>
                 <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
                         (click)="deleteUser(user)"></button>
@@ -136,14 +136,13 @@
         </ng-template>
       </p-dialog>
 
-      <!-- Modal de Sucesso de Cadastro do Usuário -->
+      <!-- Modal de Sucesso de Cadastro ou Atualização do Usuário -->
 
       <p-dialog  position="top"  [(visible)]="sucessDialog" [style]="{width: '450px'}">
         <ng-template pTemplate="header">
           Sucess
         </ng-template>
         {{ user.id ? "Usuário Atualizado com sucesso!" : " Usuário Salvo com sucesso! "}}
-
         <ng-template pTemplate="footer">
           <button pButton pRipple label="Ok" icon="pi pi-check" class="p-button-success" (click)="closeDialogSuccess()"></button>
         </ng-template>
@@ -153,7 +152,6 @@
 
       <p-dialog  position="top"  [(visible)]="errorDialog" [style]="{width: '550px'}" *ngFor="let erro of errors">
         <ng-template pTemplate="header">
-<!--          <i class="pi pi-check" style="color:red"></i>-->
           Error
         </ng-template>
           {{ erro }}
