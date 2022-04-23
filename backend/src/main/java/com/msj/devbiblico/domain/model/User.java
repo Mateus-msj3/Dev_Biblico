@@ -37,24 +37,10 @@ public class User {
 
     private RoleEnum role;
 
-//    @ElementCollection(fetch = FetchType.EAGER)
-//    @CollectionTable(name = "roles")
-//    private Set<Integer> roles = new HashSet<>();
-
     public User() {
        if (role == null) {
            setRole(RoleEnum.ROLE_USER);
        }
-
     }
-
-//    //converte minha coleção de inteiros para o tipo do perfil do Enum
-//    public Set<ProfileEnum> getRoleEnum() {
-//        return roles.stream().map(role -> ProfileEnum.toEnum(role)).collect(Collectors.toSet());
-//    }
-//
-//    public void addRole(ProfileEnum roleEnum) {
-//        roles.add(roleEnum.getCode());
-//    }
 
 }
