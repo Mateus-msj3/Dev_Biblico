@@ -6,24 +6,26 @@
       <ng-template pTemplate="header" style="color: red">
         <h1 class="title">Login</h1>
       </ng-template>
-
+      <form #loginForm="ngForm" (submit)="onSubmit()">
+        <div class="form-group">
       <span class="p-float-label">
-        <input id="float-input" type="text" pInputText class="input">
+        <input id="float-input" type="text" pInputText class="input" [(ngModel)]="username" name="username">
         <label for="float-input">Nome</label>
       </span>
+          <span class="p-float-label btn-password">
+            <input id="password" type="password" pInputText class="input" [(ngModel)]="password" name="password">
+            <label for="float-input">Senha</label>
+          </span>
 
-      <span class="p-float-label btn-password">
-        <input id="float-input2" type="password" pInputText class="input">
-        <label for="float-input">Senha</label>
-      </span>
-
-      <p class="mb-0 text-center cadastro">Não tem conta?
-        <a href="#" class="text-dark-50 fw-bold" (click)="prepareSigning($event)">
-          Cadastre-se</a>
-      </p>
-      <ng-template pTemplate="footer">
-        <button pButton pRipple label="Login" class="p-button-primary btn-login"></button>
-      </ng-template>
+          <p class="mb-0 text-center cadastro">Não tem conta?
+            <a href="#" class="text-dark-50 fw-bold" (click)="prepareSigning($event)">
+              Cadastre-se</a>
+          </p>
+          <div class="btn-login">
+            <button pButton pRipple label="Login" class="p-button-primary btn-login" type="submit"></button>
+          </div>
+        </div>
+      </form>
     </p-card>
   </div>
 
