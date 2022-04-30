@@ -21,6 +21,8 @@ export class UserAreaComponent implements OnInit {
 
   display: boolean = false;
 
+  display2: boolean = false;
+
   errorDialog: boolean = false;
 
   deleteDialog: boolean = false;
@@ -152,4 +154,7 @@ export class UserAreaComponent implements OnInit {
     event.value
   }
 
+  openListUser() {
+    this.display2 = true;
+  }
 }

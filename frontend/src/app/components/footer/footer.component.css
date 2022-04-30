@@ -1,0 +1,4 @@
+.background-footer {
+  background: -webkit-gradient(linear, left top, right top, from(#6E7076), to(#000000))
+  no-repeat;
+}

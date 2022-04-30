@@ -33,151 +33,166 @@
     </div>
 
     <div class="gropup-buttons">
-      <p-button label="Pesquisar" icon="pi pi-search" iconPos="left" class="button"></p-button>
-      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success mr-2"
+<!--      <p-button label="Pesquisar" icon="pi pi-search" iconPos="left" class="button m-lg-2"></p-button>-->
+
+      <button pButton pRipple label="Pesquisar" icon="pi pi-search" iconPos="left" class="p-button-primary m-lg-2"
+              (click)="openListUser()"></button>
+
+      <button pButton pRipple label="Listar Todos" icon="pi pi-users" class="p-button-secondary m-lg-2"
+              (click)="openListUser()"></button>
+
+      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success m-lg-2"
               (click)="openNewUser()"></button>
     </div>
 
     <!--                  TABLE GRID                   -->
-    <div class="p-grid">
-      <div class="col-offset-12">
+    <p-dialog [(visible)]="display2" [style]="{width: '1200px', height: '720px'}" header="User Details" [modal]="true"
+              styleClass="p-fluid">
+      <ng-template pTemplate="content">
+        <div class="p-grid">
+          <div class="col-offset-12">
 
-        <div class="card">
+            <div class="card">
 
-          <p-table #dt [value]="users" [rows]="10" [paginator]="true"
-                   [globalFilterFields]="['name','country.name','representative.name','status']"
-                   responsiveLayout="scroll"
-                   [(selection)]="selectedUser" [rowHover]="true" dataKey="id"
-                   currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                   [showCurrentPageReport]="true">
+              <p-table #dt [value]="users" [rows]="4" [paginator]="true"
+                       [globalFilterFields]="['name','country.name','representative.name','status']"
+                       responsiveLayout="scroll"
+                       [(selection)]="selectedUser" [rowHover]="true" dataKey="id"
+                       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                       [showCurrentPageReport]="true">
 
-            <ng-template pTemplate="caption">
-              <div class="flex align-items-right justify-content-between">
-                <h5 class="m-0">Gerenciamento de Usuários</h5>
-              </div>
-            </ng-template>
+                <ng-template pTemplate="caption">
+                  <div class="flex align-items-right justify-content-between">
+                    <h5 class="m-0">Gerenciamento de Usuários</h5>
+                  </div>
+                </ng-template>
 
-            <ng-template pTemplate="header">
-              <tr>
-                <th pSortableColumn="username">Name
-                  <p-sortIcon field="username"></p-sortIcon>
-                </th>
-                <th pSortableColumn="email">Email
-                  <p-sortIcon field="email"></p-sortIcon>
-                </th>
-                <th pSortableColumn="role">Role
-                  <p-sortIcon field="role"></p-sortIcon>
-                </th>
-              </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-user>
-              <tr>
-                <td>{{user.username}}</td>
-                <td>{{user.email}}</td>
-                <td>{{user.role}}</td>
-                <td>
-                  <button pButton pRipple icon="pi pi-pencil"
-                          class="p-button-rounded p-button-success mr-2"
-                          (click)="openEditUser(user)"
-                          routerLink="/users/edit/{{ user.id }}">
-                  </button>
-                  <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
-                          (click)="openDeleteUser(user)"></button>
-                </td>
-              </tr>
-            </ng-template>
-            <ng-template pTemplate="summary">
-              <div class="flex align-items-center justify-content-between">
-                <!--              In total there are {{user ? user.length : 0 }} users.-->
-              </div>
-            </ng-template>
-          </p-table>
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th pSortableColumn="username">Name
+                      <p-sortIcon field="username"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="email">Email
+                      <p-sortIcon field="email"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="role">Role
+                      <p-sortIcon field="role"></p-sortIcon>
+                    </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-user>
+                  <tr>
+                    <td>{{user.username}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.role}}</td>
+                    <td>
+                      <button pButton pRipple icon="pi pi-pencil"
+                              class="p-button-rounded p-button-success mr-2"
+                              (click)="openEditUser(user)"
+                              routerLink="/users/edit/{{ user.id }}">
+                      </button>
+                      <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                              (click)="openDeleteUser(user)"></button>
+                    </td>
+                  </tr>
+                </ng-template>
+<!--                <ng-template pTemplate="summary">-->
+<!--                  <div class="flex align-items-center justify-content-between">-->
+<!--                                  In total there are {{user ? users.length : 0 }} users.-->
+<!--                  </div>-->
+<!--                </ng-template>-->
+              </p-table>
+
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-dialog>
+
+
+    <!--                  FORMULÁRIO DE CADASTRO DE USUÁRIO (MODAL)                   -->
+
+    <p-dialog [(visible)]="display" [style]="{width: '650px', height: '550px'}" header="User Details" [modal]="true"
+              styleClass="p-fluid">
+      <ng-template pTemplate="content">
+
+        <div class="field">
+          <label for="name">Nome</label>
+          <input type="text" pInputText id="name" [(ngModel)]="user.username"/>
+          <!--            <small class="p-error" *ngIf="submitted && !teste.nome">Name is required.</small>-->
         </div>
 
-        <!--                  FORMULÁRIO DE CADASTRO DE USUÁRIO (MODAL)                   -->
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="text" pInputText id="email" [(ngModel)]="user.email"/>
+          <!--            <small class="p-error" *ngIf="submitted && !teste.email">Email is required.</small>-->
+        </div>
+        <div class="field">
+          <label for="senha">Senha</label>
+          <input type="text" pInputText id="senha" [(ngModel)]="user.password"/>
+          <!--            <small class="p-error" *ngIf="submitted && !teste.senha">Senha is required.</small>-->
+        </div>
 
-        <p-dialog [(visible)]="display" [style]="{width: '650px', height: '550px'}" header="User Details" [modal]="true"
-                  styleClass="p-fluid">
-          <ng-template pTemplate="content">
+        <div class="field">
+          <label>Perfil</label>
+          <p-dropdown [options]="roles"
+                      [(ngModel)]="user.role"
+                      (onChange)="onChangeValueRole($event)"
+                      optionLabel="name"
+                      optionValue="name">
+          </p-dropdown>
+        </div>
 
-            <div class="field">
-              <label for="name">Nome</label>
-              <input type="text" pInputText id="name" [(ngModel)]="user.username"/>
-              <!--            <small class="p-error" *ngIf="submitted && !teste.nome">Name is required.</small>-->
-            </div>
+      </ng-template>
 
-            <div class="field">
-              <label for="email">Email</label>
-              <input type="text" pInputText id="email" [(ngModel)]="user.email"/>
-              <!--            <small class="p-error" *ngIf="submitted && !teste.email">Email is required.</small>-->
-            </div>
-            <div class="field">
-              <label for="senha">Senha</label>
-              <input type="text" pInputText id="senha" [(ngModel)]="user.password"/>
-              <!--            <small class="p-error" *ngIf="submitted && !teste.senha">Senha is required.</small>-->
-            </div>
+      <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
+                (click)="closeNewUser()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
+                (click)="saveUser()"></button>
+      </ng-template>
+    </p-dialog>
 
-            <div class="field">
-              <label>Perfil</label>
-              <p-dropdown [options]="roles"
-                          [(ngModel)]="user.role"
-                          (onChange)="onChangeValueRole($event)"
-                          optionLabel="name"
-                          optionValue="name">
-              </p-dropdown>
-            </div>
+    <!-- Modal de Sucesso de Cadastro ou Atualização do Usuário -->
 
-          </ng-template>
+    <p-dialog position="top" [(visible)]="sucessDialog" [style]="{width: '450px'}">
+      <ng-template pTemplate="header">
+        Sucess
+      </ng-template>
+      {{ user.id ? "Usuário Atualizado com sucesso!" : " Usuário Salvo com sucesso! "}}
+      <ng-template pTemplate="footer">
+        <button pButton pRipple label="Ok" icon="pi pi-check" class="p-button-success"
+                (click)="closeDialogSuccess()"></button>
+      </ng-template>
+    </p-dialog>
 
-          <ng-template pTemplate="footer">
-            <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
-                    (click)="closeNewUser()"></button>
-            <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
-                    (click)="saveUser()"></button>
-          </ng-template>
-        </p-dialog>
+    <!-- Modal de Erro de Cadastro do Usuário -->
 
-        <!-- Modal de Sucesso de Cadastro ou Atualização do Usuário -->
+    <p-dialog position="top" [(visible)]="errorDialog" [style]="{width: '550px'}" *ngFor="let erro of errors">
+      <ng-template pTemplate="header">
+        Error
+      </ng-template>
+      {{ erro }}
+      <ng-template pTemplate="footer">
+        <button pButton pRipple label="Ok" icon="pi pi-check" class="p-button-danger"
+                (click)="closeDialogError()"></button>
+      </ng-template>
+    </p-dialog>
 
-        <p-dialog position="top" [(visible)]="sucessDialog" [style]="{width: '450px'}">
-          <ng-template pTemplate="header">
-            Sucess
-          </ng-template>
-          {{ user.id ? "Usuário Atualizado com sucesso!" : " Usuário Salvo com sucesso! "}}
-          <ng-template pTemplate="footer">
-            <button pButton pRipple label="Ok" icon="pi pi-check" class="p-button-success"
-                    (click)="closeDialogSuccess()"></button>
-          </ng-template>
-        </p-dialog>
+    <!-- Modal de Deleção do Usuário -->
+    <p-dialog position="top" [(visible)]="deleteDialog" [style]="{width: '450px'}" *ngIf="selectedUser">
+      <ng-template pTemplate="header">
+        Confirmação
+      </ng-template>
+      Tem certeza que deseja deletar o usuário(a) {{ selectedUser.username }}?
+      <ng-template pTemplate="footer">
+        <button pButton pRipple label="Confirmar" icon="pi pi-check" class="p-button-success"
+                (click)="deleteUser(user)"></button>
+        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-secondary"
+                (click)="closeDeleteUser()"></button>
+      </ng-template>
+    </p-dialog>
 
-        <!-- Modal de Erro de Cadastro do Usuário -->
-
-        <p-dialog position="top" [(visible)]="errorDialog" [style]="{width: '550px'}" *ngFor="let erro of errors">
-          <ng-template pTemplate="header">
-            Error
-          </ng-template>
-          {{ erro }}
-          <ng-template pTemplate="footer">
-            <button pButton pRipple label="Ok" icon="pi pi-check" class="p-button-danger"
-                    (click)="closeDialogError()"></button>
-          </ng-template>
-        </p-dialog>
-
-        <!-- Modal de Deleção do Usuário -->
-        <p-dialog position="top" [(visible)]="deleteDialog" [style]="{width: '450px'}" *ngIf="selectedUser">
-          <ng-template pTemplate="header">
-            Confirmação
-          </ng-template>
-          Tem certeza que deseja deletar o usuário(a) {{ selectedUser.username }}?
-          <ng-template pTemplate="footer">
-            <button pButton pRipple label="Confirmar" icon="pi pi-check" class="p-button-success"
-                    (click)="deleteUser(user)"></button>
-            <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-secondary"
-                    (click)="closeDeleteUser()"></button>
-          </ng-template>
-        </p-dialog>
-
-      </div>
-    </div>
   </div>
 </div>
+
