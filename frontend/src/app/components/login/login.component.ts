@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   loginSucess?: string;
 
-  signing?: boolean;
+  // signing?: boolean;
 
   errors?: string[];
 
@@ -47,11 +47,11 @@ export class LoginComponent implements OnInit {
 
   prepareSigning(event: any) {
     event.preventDefault();
-    this.signing = true;
+    // this.signing = true;
   }
 
   cancelSigning(event: any) {
-    this.signing = false;
+    // this.signing = false;
   }
 
   register() {
@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
     this.authService.save(user).subscribe(response => {
       console.log('Sucesso');
       this.loginSucess = 'Cadastro realizado com sucesso! Efetue o login.';
-      this.signing = false;
+      // this.signing = false;
       this.username = '';
       this.password = '';
       this.errors = [];

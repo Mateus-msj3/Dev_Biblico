@@ -1,4 +1,40 @@
 .background-found {
-  background: -webkit-gradient(linear, left top, right top, from(#6E7076), to(#000000))
+  background: -webkit-gradient(linear, left top, right top, from(#CCCCCC), to(#000000))
   no-repeat;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  margin-top: 0px;
+}
+
+.btn-password {
+  margin-top: 30px;
+}
+
+.input{
+  width: 400px;
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
+
+.btn-login {
+  width: 400px;
+  margin-bottom: 5px;
+  margin-right: 10px;
+}
+
+.cadastro {
+  margin-top: 20px;
 }

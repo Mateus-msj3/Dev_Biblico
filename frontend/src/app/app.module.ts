@@ -23,6 +23,7 @@ import {AdminRoutingModule} from "./components/admin-area/admin-routing.module";
 import {ConfirmationService} from "primeng/api";
 import {InputTextModule} from "primeng/inputtext";
 import {DialogModule} from "primeng/dialog";
+import {PasswordModule} from "primeng/password";
 
 
 @NgModule({
@@ -50,7 +51,7 @@ import {DialogModule} from "primeng/dialog";
     AdminRoutingModule,
     InputTextModule,
     DialogModule,
-
+    PasswordModule,
 
   ],
   providers: [
