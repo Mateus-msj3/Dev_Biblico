@@ -39,19 +39,6 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('access_token', access_token)
       this.router.navigate(['/admin']);
 
-      // if (this.user?.roles?.roles == 1) {
-      //   debugger
-      //   console.log(this.user)
-      //   console.log(this.user.roles)
-      //   this.router.navigate(['/admin']);
-      // }else {
-      //   debugger
-      //   this.router.navigate(['']);
-      //   console.log(this.user)
-      //   console.log(this.user?.roles)
-      // }
-
-
     }, errorResponse =>{
         this.errors = ['Usuário ou senhas incorretos(s). ']
       } )
@@ -59,16 +46,12 @@ export class LoginComponent implements OnInit {
   }
 
   prepareSigning(event: any) {
-
     event.preventDefault();
     this.signing = true;
-
   }
 
   cancelSigning(event: any) {
-
     this.signing = false;
-
   }
 
   register() {
@@ -76,8 +59,6 @@ export class LoginComponent implements OnInit {
     user.username = this.username;
     user.email = this.email;
     user.password = this.password;
-    // user.role = this.role;
-
     this.authService.save(user).subscribe(response => {
       console.log('Sucesso');
       this.loginSucess = 'Cadastro realizado com sucesso! Efetue o login.';
@@ -88,8 +69,7 @@ export class LoginComponent implements OnInit {
     }, errorResponse => {
       this.loginSucess = '';
       this.errors = errorResponse.error.errors
-    })
-
+    });
   }
 
 }

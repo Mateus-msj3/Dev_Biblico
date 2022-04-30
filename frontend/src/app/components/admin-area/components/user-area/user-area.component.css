@@ -15,7 +15,8 @@ app-user-area {}
 .container {
   border-radius: 5px;
   margin-top: 10px;
-  /*background-color: #cccbcb;*/
+  /*background: -webkit-gradient(linear, left top, right top, from(#CCCCCC), to(#000000))*/
+  /*no-repeat;*/
 }
 
 .gropup-buttons {
