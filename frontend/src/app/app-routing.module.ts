@@ -4,7 +4,6 @@ import {RouterModule, Routes} from '@angular/router';
 import {IndexComponent} from './components/index/index.component';
 import {AdminAreaComponent} from "./components/admin-area/admin-area.component";
 import {AuthGuard} from "./auth.guard";
-
 const routes: Routes = [
   {
     path: '', component: IndexComponent, children: []
@@ -12,7 +11,11 @@ const routes: Routes = [
 
   {path: 'admin', component: AdminAreaComponent, canActivate: [AuthGuard]},
 
-  {path: 'login', component: LoginComponent},
+  {path: 'login', component: LoginComponent  ,children: [
+      {path: 'sub', component: LoginComponent},
+    ]}
+
+
 
 ];
 

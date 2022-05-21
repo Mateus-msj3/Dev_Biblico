@@ -18,9 +18,10 @@
           </span>
 
           <p class="mb-0 text-center cadastro">Não tem conta?
-            <a href="#" class="text-dark-50 fw-bold" (click)="prepareSigning($event)">
+            <a routerLink="/sub" class="text-dark-50 fw-bold" (click)="openNewUser()">
               Cadastre-se</a>
           </p>
+
           <div class="btn-login">
             <button pButton pRipple label="Login" class="p-button-primary btn-login" type="submit"></button>
           </div>
@@ -31,65 +32,35 @@
 
 </section>
 
+<!--                  FORMULÁRIO DE CADASTRO DE USUÁRIO (MODAL)                   -->
 
-<!--<section class="vh-100 gradient-custom background-found">-->
-<!--  <div class="container py-5 h-100">-->
-<!--    <div class="row d-flex justify-content-center align-items-center h-100">-->
-<!--      <div class="col-12 col-md-8 col-lg-6 col-xl-5">-->
-<!--        <div class="card text-dark" style="border-radius: 0.5rem; background-color: #e0e0f0; border:2px solid #131212;">-->
-<!--          <div class="card-body p-4 background-card">-->
+<p-dialog [(visible)]="display" [style]="{width: '650px', height: '420px'}" header="User Details" [modal]="true"
+          styleClass="p-fluid">
+  <ng-template pTemplate="content">
 
-<!--            <div class="mb-md-3 mt-md-2 pb-3">-->
-<!--              <h2 class="fw-bold mb-2 mb-2 text-center">-->
-<!--                Login-->
-<!--              </h2>-->
-<!--              <div class="alert alert-success" *ngIf="loginSucess">-->
-<!--                {{ loginSucess }}-->
-<!--              </div>-->
-<!--              <div class="alert alert-danger" *ngFor="let erro of errors">-->
-<!--                {{ erro }}-->
-<!--              </div>-->
+    <div class="field">
+      <label for="name">Nome</label>
+      <input type="text" pInputText id="name" [(ngModel)]="user.username"/>
+      <!--            <small class="p-error" *ngIf="submitted && !teste.nome">Name is required.</small>-->
+    </div>
 
-<!--              <form #loginForm="ngForm" (submit)="onSubmit()">-->
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="text" pInputText id="email" [(ngModel)]="user.email"/>
+      <!--            <small class="p-error" *ngIf="submitted && !teste.email">Email is required.</small>-->
+    </div>
+    <div class="field">
+      <label for="senha">Senha</label>
+      <input type="text" pInputText id="senha" [(ngModel)]="user.password"/>
+      <!--            <small class="p-error" *ngIf="submitted && !teste.senha">Senha is required.</small>-->
+    </div>
 
-<!--                <div class="form-group">-->
-<!--                  <label class="small mb-1">Usuário</label>-->
-<!--                  <input type="text" name="username"-->
-<!--                         style=" border:1px solid #000000;"-->
-<!--                         [(ngModel)]="username"-->
-<!--                         autocomplete="off"-->
-<!--                         class="form-control py-3 mb-3"-->
-<!--                         placeholder="Digite o nome do usuário">-->
-<!--                </div>-->
-<!--                <div class="form-group">-->
-<!--                  <label class="small mb-1">Senha</label>-->
-<!--                  <input type="password" name="password"-->
-<!--                         style=" border:1px solid #000000;"-->
-<!--                         [(ngModel)]="password"-->
-<!--                         autocomplete="off"-->
-<!--                         class="form-control py-3 mb-3"-->
-<!--                         placeholder="Digite a Senha">-->
-<!--                </div>-->
-<!--                <div class="form-group align-items-center justify-content-between mt-4 mb-0">-->
-<!--                  <button class="btn btn-outline-dark btn-lg px-5"-->
-<!--                          type="submit">-->
-<!--                    Login-->
-<!--                  </button>-->
-<!--                </div>-->
-<!--              </form>-->
+  </ng-template>
 
-<!--            </div>-->
-
-<!--            <div>-->
-<!--              <p class="mb-0 text-center">Não tem conta?-->
-<!--                <a href="#" class="text-dark-50 fw-bold" (click)="prepareSigning($event)">-->
-<!--                  Cadastre-se</a>-->
-<!--              </p>-->
-<!--            </div>-->
-
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</section>-->
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
+            (click)="closeNewUser()"></button>
+    <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
+            (click)="saveUser()"></button>
+  </ng-template>
+</p-dialog>

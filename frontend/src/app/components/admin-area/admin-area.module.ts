@@ -19,7 +19,6 @@ import {ButtonModule} from "primeng/button";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
-
 @NgModule({
   declarations: [
     UserAreaComponent,

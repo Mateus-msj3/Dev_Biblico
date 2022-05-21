@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {User} from 'src/app/shared/models/user';
 import {AuthService} from 'src/app/shared/services/auth.service';
-import {roleEnum} from "../../shared/models/roleEnum";
+import {UserService} from "../../shared/services/user.service";
 
 @Component({
   selector: 'app-login',
@@ -17,17 +17,19 @@ export class LoginComponent implements OnInit {
 
   email?: string;
 
-  role?: roleEnum;
-
   loginSucess?: string;
-
-  // signing?: boolean;
 
   errors?: string[];
 
-  user?: User;
+  display: boolean = false;
 
-  constructor(private router: Router, private authService: AuthService) { }
+  user: User = new User();
+
+  sucessDialog: boolean = false;
+
+  errorDialog: boolean = false;
+
+  constructor(private router: Router, private authService: AuthService, private userService: UserService,) { }
 
   ngOnInit(): void {
   }
@@ -46,31 +48,40 @@ export class LoginComponent implements OnInit {
 
   }
 
-  prepareSigning(event: any) {
-    event.preventDefault();
-    // this.signing = true;
+  saveUser() {
+    if (!this.user.id) {
+      this.userService.save(this.user).subscribe(sucessResponse => {
+        this.sucessDialog = true;
+        this.clearFormNewUser();
+      }, errorResponse => {
+        this.errorDialog = true;
+      });
+    }
+
   }
 
-  cancelSigning(event: any) {
-    // this.signing = false;
+  clearFormNewUser() {
+    this.user.username = "";
+    this.user.email = "";
+    this.user.password = "";
   }
 
-  register() {
-    const user: User = new User();
-    user.username = this.username;
-    user.email = this.email;
-    user.password = this.password;
-    this.authService.save(user).subscribe(response => {
-      console.log('Sucesso');
-      this.loginSucess = 'Cadastro realizado com sucesso! Efetue o login.';
-      // this.signing = false;
-      this.username = '';
-      this.password = '';
-      this.errors = [];
-    }, errorResponse => {
-      this.loginSucess = '';
-      this.errors = errorResponse.error.errors
-    });
+  openNewUser() {
+    this.display = true;
+    this.router.navigate(['login/sub']);
+  }
+
+  closeNewUser() {
+    this.display = false;
+  }
+
+  closeDialogSuccess() {
+    this.sucessDialog = false;
+    this.display = false;
+  }
+
+  closeDialogError() {
+    this.errorDialog = false;
   }
 
 }

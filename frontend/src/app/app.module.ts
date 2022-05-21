@@ -24,6 +24,7 @@ import {ConfirmationService} from "primeng/api";
 import {InputTextModule} from "primeng/inputtext";
 import {DialogModule} from "primeng/dialog";
 import {PasswordModule} from "primeng/password";
+import {DropdownModule} from "primeng/dropdown";
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import {PasswordModule} from "primeng/password";
     InputTextModule,
     DialogModule,
     PasswordModule,
+    DropdownModule,
 
   ],
   providers: [
@@ -59,7 +61,8 @@ import {PasswordModule} from "primeng/password";
     ConfirmationService
   ],
   exports: [
-    NavbarComponent
+    NavbarComponent,
+
   ],
   bootstrap: [AppComponent]
 })
