@@ -22,15 +22,15 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     public List<User> findAll() {
-        return  userRepository.findAll();
+        return userRepository.findAll();
     }
 
     public User findById(Long id) {
         Optional<User> user = userRepository.findById(id);
-        if(user.isPresent()) {
+        if (user.isPresent()) {
             return user.get();
         }
-        return user.orElseThrow(()-> new ObjectNotFoundException("Usuário não encontrado"));
+        return user.orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado"));
     }
 
 
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
                 BeanUtils.copyProperties(user, currentUser.get(), "id");
             }
             return userRepository.save(user);
-        } catch(NoSuchElementException e) {
+        } catch (NoSuchElementException e) {
             throw new ObjectNotFoundException("User não encontrado");
         }
     }
@@ -66,9 +66,18 @@ public class UserServiceImpl implements UserService {
         try {
             userRepository.deleteById(id);
 
-        }catch (EmptyResultDataAccessException e) {
+        } catch (EmptyResultDataAccessException e) {
             throw new ObjectNotFoundException(String.format("Não existe usúario com o código %d", id));
         }
+    }
+
+    @Override
+    public User findByEmailUser(String email) {
+        Optional<User> user = userRepository.findUserByEmail(email);
+        if (user.isPresent()) {
+            return user.get();
+        }
+        return user.orElseThrow(()-> new ObjectNotFoundException("Usuário não encontrado"));
     }
 
 }

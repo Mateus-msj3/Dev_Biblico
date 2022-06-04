@@ -27,6 +27,12 @@ export class UserAreaComponent implements OnInit {
 
   deleteDialog: boolean = false;
 
+  enabledFormEditOneUser: boolean = false;
+
+  enabledFiledsEditOneUser: boolean = true;
+
+  closeEditOneUser: boolean = false;
+
   errors?: String[];
 
   selectedUser!: User;
@@ -120,6 +126,14 @@ export class UserAreaComponent implements OnInit {
     this.user.username = user.username;
     this.user.email = user.email;
     this.user.password = user.password;
+  }
+
+  enabledEditOneUser(event: MouseEvent) {
+    this.enabledFiledsEditOneUser = false
+  }
+
+  cancelEditOneUser(event: MouseEvent) {
+    this.enabledFormEditOneUser = false
   }
 
   openDeleteUser(user: User) {

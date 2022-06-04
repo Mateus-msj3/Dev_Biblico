@@ -28,6 +28,12 @@ public class UserController {
         return ResponseEntity.ok().body(user);
     }
 
+    @GetMapping("/email/{email}")
+    public ResponseEntity<User> searchUserByEmail(@PathVariable String email) {
+        User user = userService.findByEmailUser(email);
+        return ResponseEntity.ok().body(user);
+    }
+
     @PostMapping()
     public ResponseEntity<User> save(@Valid @RequestBody User user) {
             user = userService.save(user);

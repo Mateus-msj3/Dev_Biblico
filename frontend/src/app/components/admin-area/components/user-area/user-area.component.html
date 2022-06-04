@@ -32,18 +32,54 @@
 
     <!--                  CARD LIST ONE USER              -->
     <div class="p-grid">
-      <p-card header="Info User" [style]="{width: '880px'}" styleClass="p-card-shadow">
+      <p-card header="Info User" [style]="{width: '600px'}" styleClass="p-card-shadow">
         <ng-template pTemplate="header">
         </ng-template>
 
+        <div class="field">
+           <span class="p-float-label">
+            <input id="username" type="text" pInputText class="input-card-one-user"
+                   [(ngModel)]="user.username"
+                   [disabled]="enabledFiledsEditOneUser">
+            <label for="username">Nome</label>
+           </span>
+        </div>
+
+        <div class="field">
+           <span class="p-float-label input-card-one-user">
+            <input id="useremail" type="text" pInputText class="input-card-one-user"
+                   [(ngModel)]="user.email"
+                   [disabled]="enabledFiledsEditOneUser">
+            <label for="useremail">Email</label>
+           </span>
+        </div>
+
+        <div class="field">
+           <span class="p-float-label input-card-one-user">
+            <input id="userpassword" type="text" pInputText class="input-card-one-user"
+                   [(ngModel)]="user.password"
+                   [disabled]="enabledFiledsEditOneUser">
+            <label for="userpassword">Senha</label>
+           </span>
+        </div>
+
+        <div class="field">
+          <p-dropdown [options]="roles"
+                      [(ngModel)]="user.role"
+                      (onChange)="onChangeValueRole($event)"
+                      optionLabel="name"
+                      optionValue="name"
+                      [disabled]="enabledFiledsEditOneUser">
+          </p-dropdown>
+        </div>
 
         <ng-template pTemplate="footer">
-          <p-button label="Save" icon="pi pi-check"></p-button>
-          <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary"
-                    [style]="{'margin-left': '.5em'}"></p-button>
+          <p-button label="Editar" icon="pi pi-check" (click)="enabledEditOneUser($event)"></p-button>
+          <p-button label="Cancelar" icon="pi pi-times" styleClass="p-button-secondary"
+                    [style]="{'margin-left': '.5em'}" (click)="cancelEditOneUser($event)"></p-button>
 
-          <p-button label="Save" icon="pi pi-check"></p-button>
-          <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary"
+          <p-button label="Salvar" icon="pi pi-check" [style]="{'margin-left': '.5em'}"></p-button>
+          <p-button label="Cancelar" icon="pi pi-times" styleClass="p-button-secondary"
                     [style]="{'margin-left': '.5em'}"></p-button>
         </ng-template>
       </p-card>
