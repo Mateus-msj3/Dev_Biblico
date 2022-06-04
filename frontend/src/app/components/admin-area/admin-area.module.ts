@@ -17,6 +17,7 @@ import {ConfirmationService} from "primeng/api";
 import {InputTextModule} from "primeng/inputtext";
 import {ButtonModule} from "primeng/button";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {CardModule} from "primeng/card";
 
 
 @NgModule({
@@ -30,25 +31,26 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     NavbarAdminComponent
   ],
 
-  imports: [
-    CommonModule,
-    RouterModule,
-    TableModule,
-    ToolbarModule,
-    FileUploadModule,
-    RatingModule,
-    DialogModule,
-    DropdownModule,
-    RadioButtonModule,
-    InputNumberModule,
-    ConfirmDialogModule,
-    FormsModule,
-    DropdownModule,
-    InputTextModule,
-    ButtonModule,
-    BrowserAnimationsModule,
+    imports: [
+        CommonModule,
+        RouterModule,
+        TableModule,
+        ToolbarModule,
+        FileUploadModule,
+        RatingModule,
+        DialogModule,
+        DropdownModule,
+        RadioButtonModule,
+        InputNumberModule,
+        ConfirmDialogModule,
+        FormsModule,
+        DropdownModule,
+        InputTextModule,
+        ButtonModule,
+        BrowserAnimationsModule,
+        CardModule,
 
-  ],
+    ],
 
 
   providers: [
