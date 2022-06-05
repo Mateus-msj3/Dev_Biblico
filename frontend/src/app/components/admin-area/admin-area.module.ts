@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {UserAreaComponent} from "./components/user-area/user-area.component";
+import {UserAdminAreaComponent} from "./components/user-admin-area/user-admin-area.component";
 import {RouterModule} from "@angular/router";
 import {NavbarAdminComponent} from './components/navbar-admin/navbar-admin.component';
 import {TableModule} from "primeng/table";
@@ -22,12 +22,12 @@ import {CardModule} from "primeng/card";
 
 @NgModule({
   declarations: [
-    UserAreaComponent,
+    UserAdminAreaComponent,
     NavbarAdminComponent,
   ],
 
   exports: [
-    UserAreaComponent,
+    UserAdminAreaComponent,
     NavbarAdminComponent
   ],
 

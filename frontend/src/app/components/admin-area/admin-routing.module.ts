@@ -1,14 +1,14 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {UserAreaComponent} from "./components/user-area/user-area.component";
+import {UserAdminAreaComponent} from "./components/user-admin-area/user-admin-area.component";
 import {AuthGuard} from "../../auth.guard";
 
 
 const routes: Routes = [
   {
-    path: 'users', component: UserAreaComponent, canActivate: [AuthGuard], children: [
-      {path: 'new', component: UserAreaComponent, canActivate: [AuthGuard]},
-      {path: 'edit/:id', component: UserAreaComponent, canActivate: [AuthGuard]},
+    path: 'users', component: UserAdminAreaComponent, canActivate: [AuthGuard], children: [
+      {path: 'new', component: UserAdminAreaComponent, canActivate: [AuthGuard]},
+      {path: 'edit/:id', component: UserAdminAreaComponent, canActivate: [AuthGuard]},
     ]
   },
 

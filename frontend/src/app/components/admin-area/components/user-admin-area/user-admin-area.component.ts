@@ -6,10 +6,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-area',
-  templateUrl: './user-area.component.html',
-  styleUrls: ['./user-area.component.css']
+  templateUrl: './user-admin-area.component.html',
+  styleUrls: ['./user-admin-area.component.css']
 })
-export class UserAreaComponent implements OnInit {
+export class UserAdminAreaComponent implements OnInit {
 
   user: User = new User();
 
@@ -42,6 +42,8 @@ export class UserAreaComponent implements OnInit {
   selectedProfile: any;
 
   id?: number;
+
+  emailFilter!: string;
 
   constructor(private userService: UserService,
               private activatedRoute: ActivatedRoute,
@@ -79,18 +81,25 @@ export class UserAreaComponent implements OnInit {
   }
 
   filterUserByEmail() {
-    this.userService.getUserByEmail(this.user.email).subscribe(sucessResponse => {
-      this.enabledFormEditOneUser = true;
+    debugger
+    if (this.emailFilter == undefined) {
+      //Fazer um dialog de informação
+      this.sucessDialog = true
+    }else {
+      this.userService.getUserByEmail(this.emailFilter).subscribe(sucessResponse => {
+        this.enabledFormEditOneUser = true;
 
-      this.user.id = sucessResponse.id;
-      this.user.username = sucessResponse.username;
-      this.user.email = sucessResponse.email;
-      this.user.password = sucessResponse.password;
-      this.user.role = sucessResponse.role;
+        this.user.id = sucessResponse.id;
+        this.user.username = sucessResponse.username;
+        this.user.email = sucessResponse.email;
+        this.user.password = sucessResponse.password;
+        this.user.role = sucessResponse.role;
 
-    }, errorResponse => {
+      }, errorResponse => {
         console.log("Usuário não encontrado!");
-    });
+      });
+    }
+
   }
 
   saveUser() {
@@ -139,6 +148,7 @@ export class UserAreaComponent implements OnInit {
   }
 
   setValueEditFormUser(user: User) {
+    this.user.id = user.id
     this.user.username = user.username;
     this.user.email = user.email;
     this.user.password = user.password;
@@ -163,13 +173,27 @@ export class UserAreaComponent implements OnInit {
   }
 
   deleteUser(user: User) {
-    this.userService.delete(this.selectedUser).subscribe(sucessResponse => {
-      this.sucessDialog = true;
-      this.closeDeleteUser();
-      this.getUsers();
-    }, error => {
-      this.errorDialog = true;
-    })
+    debugger
+    //Esta condiçao será chamada quando deletar um usuário no form
+    if (this.enabledFormEditOneUser) {
+      this.userService.delete(user.id).subscribe(successResponse => {
+        this.sucessDialog = true;
+        this.enabledFormEditOneUser = false;
+      }, error => {
+        //colocar o dialog de erro
+        console.log(error);
+      });
+    } else {
+      //Esta condiçao será chamada quando deletar um usuário no data grid
+      this.userService.delete(this.selectedUser.id).subscribe(sucessResponse => {
+        this.sucessDialog = true;
+        this.closeDeleteUser();
+        this.getUsers();
+      }, error => {
+        this.errorDialog = true;
+      });
+    }
+
   }
 
   closeDialogSuccess() {

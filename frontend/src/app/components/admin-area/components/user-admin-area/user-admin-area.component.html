@@ -13,7 +13,7 @@
       <span class="p-input-icon-right">
 <!--        <i class="pi pi-search"></i>-->
         <label>Email</label>
-        <input pInputText type="text" placeholder="Email" [(ngModel)]="user.email"/>
+        <input pInputText type="text" placeholder="Email" [(ngModel)]="emailFilter"/>
       </span>
     </div>
 
@@ -31,54 +31,57 @@
     </div>
 
     <!--                  CARD LIST ONE USER              -->
-    <div class="p-grid">
-      <p-card header="Info User" [style]="{width: '600px'}" styleClass="p-card-shadow" *ngIf="enabledFormEditOneUser">
-        <ng-template pTemplate="header">
-        </ng-template>
+    <div class="container">
+      <div class="p-grid">
+        <p-card header="Info User" [style]="{width: '600px'}" styleClass="p-card-shadow" *ngIf="enabledFormEditOneUser">
+          <ng-template pTemplate="header">
+          </ng-template>
 
-        <div class="field">
+          <div class="field">
             <input id="username" type="text" pInputText class="input-card-one-user"
                    placeholder="Nome"
                    [(ngModel)]="user.username"
                    [disabled]="enabledFiledsEditOneUser">
-        </div>
+          </div>
 
-        <div class="field">
+          <div class="field">
             <input id="useremail" type="text" pInputText class="input-card-one-user"
                    placeholder="Email"
                    [(ngModel)]="user.email"
                    [disabled]="enabledFiledsEditOneUser">
-        </div>
+          </div>
 
-        <div class="field">
+          <div class="field">
             <input id="userpassword" type="text" pInputText class="input-card-one-user"
                    placeholder="Senha"
                    [(ngModel)]="user.password"
                    [disabled]="enabledFiledsEditOneUser">
-        </div>
+          </div>
 
-        <div class="field">
-          <p-dropdown [options]="roles"
-                      [(ngModel)]="user.role"
-                      (onChange)="onChangeValueRole($event)"
-                      optionLabel="name"
-                      optionValue="name"
-                      [disabled]="enabledFiledsEditOneUser">
-          </p-dropdown>
-        </div>
+          <div class="field">
+            <p-dropdown [options]="roles"
+                        [(ngModel)]="user.role"
+                        (onChange)="onChangeValueRole($event)"
+                        optionLabel="name"
+                        optionValue="name"
+                        [disabled]="enabledFiledsEditOneUser">
+            </p-dropdown>
+          </div>
 
-        <ng-template pTemplate="footer">
-          <p-button label="Editar" icon="pi pi-check" (click)="enabledEditOneUser(user)"></p-button>
-          <p-button label="Cancelar" icon="pi pi-times" styleClass="p-button-secondary"
-                    [style]="{'margin-left': '.5em'}" (click)="cancelEditOneUser($event)"></p-button>
 
-          <p-button label="Salvar" icon="pi pi-check" [style]="{'margin-left': '.5em'}"
-                    *ngIf="!enabledFiledsEditOneUser" (click)="saveUser()"></p-button>
-          <p-button label="Cancelar" icon="pi pi-times" styleClass="p-button-secondary"
-                    [style]="{'margin-left': '.5em'}"
-                    *ngIf="!enabledFiledsEditOneUser" (click)="cancelEditOneUser($event)"></p-button>
-        </ng-template>
-      </p-card>
+          <ng-template pTemplate="footer">
+            <p-button label="Editar" icon="pi pi-check" (click)="enabledEditOneUser(user)"></p-button>
+            <p-button label="Fechar" icon="pi pi-times" styleClass="p-button-secondary"
+                      [style]="{'margin-left': '.5em'}" (click)="cancelEditOneUser($event)"></p-button>
+            <p-button label="Deletar" icon="pi pi-trash" styleClass="p-button-danger"
+                      [style]="{'margin-left': '.5em'}" (click)="deleteUser(user)"></p-button>
+
+            <p-button label="Salvar" icon="pi pi-check-square" styleClass="p-button-success"
+                      [style]="{'margin-left': '.5em'}"
+                      *ngIf="!enabledFiledsEditOneUser" (click)="saveUser()"></p-button>
+          </ng-template>
+        </p-card>
+      </div>
     </div>
 
     <!--                  TABLE GRID     LIST ALL              -->
@@ -137,11 +140,6 @@
                     </td>
                   </tr>
                 </ng-template>
-                <!--                <ng-template pTemplate="summary">-->
-                <!--                  <div class="flex align-items-center justify-content-between">-->
-                <!--                                  In total there are {{user ? users.length : 0 }} users.-->
-                <!--                  </div>-->
-                <!--                </ng-template>-->
               </p-table>
 
             </div>
