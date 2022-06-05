@@ -20,16 +20,15 @@
       <label class="radio" [for]="option.key">{{ option.name }}</label>
 
     </div>
-
-
+    
     <div class="col-12 md:col-4 p-fluid " *ngIf="filterByName">
       <span class="p-float-label">
         <p-autoComplete [(ngModel)]="text"
                         [suggestions]="results"
                         (completeMethod)="search($event)"
-                        id="nome">
+                        id="nomeFilter">
         </p-autoComplete>
-        <label for="nome">Nome</label>
+        <label for="nomeFilter">Nome</label>
       </span>
     </div>
 
@@ -41,15 +40,28 @@
     </div>
 
     <div class="gropup-buttons">
+      <button pButton pRipple
+              label="Pesquisar"
+              icon="pi pi-search"
+              iconPos="left"
+              class="p-button-primary m-lg-2"
+              (click)="filterUserByEmail()"
+              [disabled]="filterByName">
+      </button>
 
-      <button pButton pRipple label="Pesquisar" icon="pi pi-search" iconPos="left" class="p-button-primary m-lg-2"
-              (click)="filterUserByEmail()"></button>
+      <button pButton pRipple
+              label="Listar Todos"
+              icon="pi pi-users"
+              class="p-button-secondary m-lg-2"
+              (click)="openListUser()">
+      </button>
 
-      <button pButton pRipple label="Listar Todos" icon="pi pi-users" class="p-button-secondary m-lg-2"
-              (click)="openListUser()"></button>
-
-      <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success m-lg-2"
-              (click)="openNewUser()"></button>
+      <button pButton pRipple
+              label="Novo"
+              icon="pi pi-plus"
+              class="p-button-success m-lg-2"
+              (click)="openNewUser()">
+      </button>
     </div>
 
     <!--                  CARD LIST ONE USER              -->
