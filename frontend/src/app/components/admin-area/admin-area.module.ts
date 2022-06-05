@@ -18,6 +18,8 @@ import {InputTextModule} from "primeng/inputtext";
 import {ButtonModule} from "primeng/button";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CardModule} from "primeng/card";
+import {AutoCompleteModule} from "primeng/autocomplete";
+import {CheckboxModule} from "primeng/checkbox";
 
 
 @NgModule({
@@ -31,26 +33,28 @@ import {CardModule} from "primeng/card";
     NavbarAdminComponent
   ],
 
-    imports: [
-        CommonModule,
-        RouterModule,
-        TableModule,
-        ToolbarModule,
-        FileUploadModule,
-        RatingModule,
-        DialogModule,
-        DropdownModule,
-        RadioButtonModule,
-        InputNumberModule,
-        ConfirmDialogModule,
-        FormsModule,
-        DropdownModule,
-        InputTextModule,
-        ButtonModule,
-        BrowserAnimationsModule,
-        CardModule,
+  imports: [
+    CommonModule,
+    RouterModule,
+    TableModule,
+    ToolbarModule,
+    FileUploadModule,
+    RatingModule,
+    DialogModule,
+    DropdownModule,
+    RadioButtonModule,
+    InputNumberModule,
+    ConfirmDialogModule,
+    FormsModule,
+    DropdownModule,
+    InputTextModule,
+    ButtonModule,
+    BrowserAnimationsModule,
+    CardModule,
+    AutoCompleteModule,
+    CheckboxModule,
 
-    ],
+  ],
 
 
   providers: [

@@ -2,23 +2,47 @@
 
 <div class="container">
 
-
   <div class="p-grid">
+
 
     <div class="col-12 md:col-4">
       <h3>Filtro de Usuários</h3>
     </div>
 
+    <div class="field-radiobutton">
+
+      <p-radioButton name="optionSelected"
+                     [value]="optionSelected"
+                     [(ngModel)]="filtrarPorNome"
+                     inputId="optionSelected"
+                     (onClick)="selectTypeFilter($event)"
+                     [label]="optionSelected">
+      </p-radioButton>
+      <label class="label-radio1" for="optionSelected"></label>
+
+      <p-radioButton class="radio2" name="filtrarPorEmail" value="filtrarPorEmail"
+                     [(ngModel)]="filtrarPorEmail" inputId="city1"
+                     (onClick)="selectTypeFilter($event)">
+      </p-radioButton>
+      <label class="label-checkbox">Filtar por email</label>
+
+    </div>
+
+
     <div class="col-12 md:col-4 p-fluid">
+        <label>Nome</label>
+        <p-autoComplete [(ngModel)]="text" [suggestions]="results" (completeMethod)="search($event)"></p-autoComplete>
+    </div>
+
+    <div class="col-12 md:col-4 p-fluid" *ngIf="filtrarPorEmail">
       <span class="p-input-icon-right">
 <!--        <i class="pi pi-search"></i>-->
         <label>Email</label>
-        <input pInputText type="text" placeholder="Email" [(ngModel)]="emailFilter"/>
+        <input pInputText type="text" placeholder="Email" [(ngModel)]="emailFilter" />
       </span>
     </div>
 
     <div class="gropup-buttons">
-      <!--      <p-button label="Pesquisar" icon="pi pi-search" iconPos="left" class="button m-lg-2"></p-button>-->
 
       <button pButton pRipple label="Pesquisar" icon="pi pi-search" iconPos="left" class="p-button-primary m-lg-2"
               (click)="filterUserByEmail()"></button>

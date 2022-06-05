@@ -33,3 +33,22 @@ app-user-area {}
   margin-right: 10px;
 }
 
+.checkbox {
+  margin-left: 4em;
+}
+
+.label-checkbox {
+  margin-left: 0.5em;
+}
+
+.field-checkbox{
+  margin-bottom: 1em;
+}
+
+.label-radio1 {
+  margin-left: 0.5em;
+}
+
+.radio2 {
+  margin-left: 3em;
+}

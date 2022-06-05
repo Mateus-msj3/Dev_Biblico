@@ -45,6 +45,18 @@ export class UserAdminAreaComponent implements OnInit {
 
   emailFilter!: string;
 
+  text: any;
+
+  results: any;
+
+  filtrarPorNome: boolean = false;
+
+  filtrarPorEmail: boolean = false;
+
+  options: String[] = ['Filtrar por nome', 'Filtrar por email']
+
+  optionSelected: any = "Filtar por nome";
+
   constructor(private userService: UserService,
               private activatedRoute: ActivatedRoute,
               private router: Router) {
@@ -59,6 +71,8 @@ export class UserAdminAreaComponent implements OnInit {
   ngOnInit(): void {
     this.getUsers();
     this.paramsRoute();
+    this.filtrarPorNome = true;
+    this.optionSelected
   }
 
   paramsRoute() {
@@ -78,6 +92,15 @@ export class UserAdminAreaComponent implements OnInit {
     this.userService.getUser().subscribe(response => {
       this.users = response;
     });
+  }
+
+  selectTypeFilter(event: MouseEvent) {
+    if (this.filtrarPorNome) {
+      this.filtrarPorEmail = false;
+
+    }else if(this.filtrarPorEmail) {
+      this.filtrarPorNome = false;
+    }
   }
 
   filterUserByEmail() {
@@ -211,5 +234,9 @@ export class UserAdminAreaComponent implements OnInit {
 
   openListUser() {
     this.display2 = true;
+  }
+
+  search($event: any) {
+
   }
 }
