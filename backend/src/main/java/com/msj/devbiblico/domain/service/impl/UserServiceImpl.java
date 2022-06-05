@@ -72,6 +72,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> findUserByName(String username) {
+        return userRepository.findByUsernameContainsIgnoreCase(username);
+    }
+
+    @Override
     public User findUserByEmail(String email) {
         Optional<User> user = userRepository.findUserByEmail(email);
         if (user.isPresent()) {
