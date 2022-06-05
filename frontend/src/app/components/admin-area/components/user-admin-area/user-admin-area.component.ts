@@ -31,15 +31,9 @@ export class UserAdminAreaComponent implements OnInit {
 
   enabledFiledsEditOneUser: boolean = true;
 
-  closeEditOneUser: boolean = false;
-
   errors?: String[];
 
   selectedUser!: User;
-
-  profiles: any;
-
-  selectedProfile: any;
 
   id?: number;
 
@@ -49,13 +43,13 @@ export class UserAdminAreaComponent implements OnInit {
 
   results: any;
 
-  filtrarPorNome: boolean = false;
+  filterByName: boolean = false;
 
-  filtrarPorEmail: boolean = false;
+  filterByEmail: boolean = false;
 
-  options: String[] = ['Filtrar por nome', 'Filtrar por email']
+  options: any[] = [{name: 'Filtrar por nome', key: '1'}, {name: 'Filtrar por email', key: 2}];
 
-  optionSelected: any = "Filtar por nome";
+  optionSelected: any = null;
 
   constructor(private userService: UserService,
               private activatedRoute: ActivatedRoute,
@@ -71,8 +65,8 @@ export class UserAdminAreaComponent implements OnInit {
   ngOnInit(): void {
     this.getUsers();
     this.paramsRoute();
-    this.filtrarPorNome = true;
-    this.optionSelected
+    this.filterByName = true
+    this.optionSelected = this.options[0]
   }
 
   paramsRoute() {
@@ -95,11 +89,14 @@ export class UserAdminAreaComponent implements OnInit {
   }
 
   selectTypeFilter(event: MouseEvent) {
-    if (this.filtrarPorNome) {
-      this.filtrarPorEmail = false;
+    debugger
+    if (this.optionSelected == this.options[0]) {
+      this.filterByEmail = false;
+      this.filterByName = true
 
-    }else if(this.filtrarPorEmail) {
-      this.filtrarPorNome = false;
+    }else if(this.optionSelected == this.options[1]) {
+      this.filterByName = false;
+      this.filterByEmail = true;
     }
   }
 

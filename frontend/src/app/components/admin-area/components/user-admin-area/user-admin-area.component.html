@@ -9,36 +9,34 @@
       <h3>Filtro de Usuários</h3>
     </div>
 
-    <div class="field-radiobutton">
+    <div *ngFor="let option of options" class="field-checkbox">
 
-      <p-radioButton name="optionSelected"
-                     [value]="optionSelected"
-                     [(ngModel)]="filtrarPorNome"
-                     inputId="optionSelected"
-                     (onClick)="selectTypeFilter($event)"
-                     [label]="optionSelected">
-      </p-radioButton>
-      <label class="label-radio1" for="optionSelected"></label>
-
-      <p-radioButton class="radio2" name="filtrarPorEmail" value="filtrarPorEmail"
-                     [(ngModel)]="filtrarPorEmail" inputId="city1"
+      <p-radioButton [inputId]="option.key"
+                     name="option"
+                     [value]="option"
+                     [(ngModel)]="optionSelected"
                      (onClick)="selectTypeFilter($event)">
       </p-radioButton>
-      <label class="label-checkbox">Filtar por email</label>
+      <label class="radio" [for]="option.key">{{ option.name }}</label>
 
     </div>
 
 
-    <div class="col-12 md:col-4 p-fluid">
-        <label>Nome</label>
-        <p-autoComplete [(ngModel)]="text" [suggestions]="results" (completeMethod)="search($event)"></p-autoComplete>
+    <div class="col-12 md:col-4 p-fluid " *ngIf="filterByName">
+      <span class="p-float-label">
+        <p-autoComplete [(ngModel)]="text"
+                        [suggestions]="results"
+                        (completeMethod)="search($event)"
+                        id="nome">
+        </p-autoComplete>
+        <label for="nome">Nome</label>
+      </span>
     </div>
 
-    <div class="col-12 md:col-4 p-fluid" *ngIf="filtrarPorEmail">
-      <span class="p-input-icon-right">
-<!--        <i class="pi pi-search"></i>-->
-        <label>Email</label>
-        <input pInputText type="text" placeholder="Email" [(ngModel)]="emailFilter" />
+    <div class="col-12 md:col-4 p-fluid" *ngIf="filterByEmail">
+      <span class="p-float-label">
+        <input pInputText type="text" id="emailFilter" [(ngModel)]="emailFilter" />
+        <label for="emailFilter">Email</label>
       </span>
     </div>
 
