@@ -63,7 +63,7 @@ export class UserAreaComponent implements OnInit {
     this.activatedRoute.params.subscribe(value => {
       this.id = value['id'];
       if (value.id) {
-        this.userService.getuserById(this.id).subscribe(sucessResponse => {
+        this.userService.getUserById(this.id).subscribe(sucessResponse => {
           this.user = sucessResponse;
         }, errorResponse => {
           this.user = new User();
@@ -78,7 +78,23 @@ export class UserAreaComponent implements OnInit {
     });
   }
 
+  filterUserByEmail() {
+    this.userService.getUserByEmail(this.user.email).subscribe(sucessResponse => {
+      this.enabledFormEditOneUser = true;
+
+      this.user.id = sucessResponse.id;
+      this.user.username = sucessResponse.username;
+      this.user.email = sucessResponse.email;
+      this.user.password = sucessResponse.password;
+      this.user.role = sucessResponse.role;
+
+    }, errorResponse => {
+        console.log("Usuário não encontrado!");
+    });
+  }
+
   saveUser() {
+    debugger
     if (!this.user.id) {
       this.userService.save(this.user).subscribe(sucessResponse => {
         this.sucessDialog = true;
@@ -128,7 +144,8 @@ export class UserAreaComponent implements OnInit {
     this.user.password = user.password;
   }
 
-  enabledEditOneUser(event: MouseEvent) {
+  enabledEditOneUser(user: User) {
+    debugger
     this.enabledFiledsEditOneUser = false
   }
 

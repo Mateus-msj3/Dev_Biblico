@@ -11,9 +11,9 @@
 
     <div class="col-12 md:col-4 p-fluid">
       <span class="p-input-icon-right">
-        <i class="pi pi-search"></i>
+<!--        <i class="pi pi-search"></i>-->
         <label>Email</label>
-        <input pInputText type="text" placeholder="Email"/>
+        <input pInputText type="text" placeholder="Email" [(ngModel)]="user.email"/>
       </span>
     </div>
 
@@ -21,7 +21,7 @@
       <!--      <p-button label="Pesquisar" icon="pi pi-search" iconPos="left" class="button m-lg-2"></p-button>-->
 
       <button pButton pRipple label="Pesquisar" icon="pi pi-search" iconPos="left" class="p-button-primary m-lg-2"
-              (click)="openListUser()"></button>
+              (click)="filterUserByEmail()"></button>
 
       <button pButton pRipple label="Listar Todos" icon="pi pi-users" class="p-button-secondary m-lg-2"
               (click)="openListUser()"></button>
@@ -32,35 +32,29 @@
 
     <!--                  CARD LIST ONE USER              -->
     <div class="p-grid">
-      <p-card header="Info User" [style]="{width: '600px'}" styleClass="p-card-shadow">
+      <p-card header="Info User" [style]="{width: '600px'}" styleClass="p-card-shadow" *ngIf="enabledFormEditOneUser">
         <ng-template pTemplate="header">
         </ng-template>
 
         <div class="field">
-           <span class="p-float-label">
             <input id="username" type="text" pInputText class="input-card-one-user"
+                   placeholder="Nome"
                    [(ngModel)]="user.username"
                    [disabled]="enabledFiledsEditOneUser">
-            <label for="username">Nome</label>
-           </span>
         </div>
 
         <div class="field">
-           <span class="p-float-label input-card-one-user">
             <input id="useremail" type="text" pInputText class="input-card-one-user"
+                   placeholder="Email"
                    [(ngModel)]="user.email"
                    [disabled]="enabledFiledsEditOneUser">
-            <label for="useremail">Email</label>
-           </span>
         </div>
 
         <div class="field">
-           <span class="p-float-label input-card-one-user">
             <input id="userpassword" type="text" pInputText class="input-card-one-user"
+                   placeholder="Senha"
                    [(ngModel)]="user.password"
                    [disabled]="enabledFiledsEditOneUser">
-            <label for="userpassword">Senha</label>
-           </span>
         </div>
 
         <div class="field">
@@ -74,13 +68,15 @@
         </div>
 
         <ng-template pTemplate="footer">
-          <p-button label="Editar" icon="pi pi-check" (click)="enabledEditOneUser($event)"></p-button>
+          <p-button label="Editar" icon="pi pi-check" (click)="enabledEditOneUser(user)"></p-button>
           <p-button label="Cancelar" icon="pi pi-times" styleClass="p-button-secondary"
                     [style]="{'margin-left': '.5em'}" (click)="cancelEditOneUser($event)"></p-button>
 
-          <p-button label="Salvar" icon="pi pi-check" [style]="{'margin-left': '.5em'}"></p-button>
+          <p-button label="Salvar" icon="pi pi-check" [style]="{'margin-left': '.5em'}"
+                    *ngIf="!enabledFiledsEditOneUser" (click)="saveUser()"></p-button>
           <p-button label="Cancelar" icon="pi pi-times" styleClass="p-button-secondary"
-                    [style]="{'margin-left': '.5em'}"></p-button>
+                    [style]="{'margin-left': '.5em'}"
+                    *ngIf="!enabledFiledsEditOneUser" (click)="cancelEditOneUser($event)"></p-button>
         </ng-template>
       </p-card>
     </div>

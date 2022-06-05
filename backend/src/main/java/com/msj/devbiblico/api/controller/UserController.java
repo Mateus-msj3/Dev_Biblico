@@ -30,7 +30,7 @@ public class UserController {
 
     @GetMapping("/email/{email}")
     public ResponseEntity<User> searchUserByEmail(@PathVariable String email) {
-        User user = userService.findByEmailUser(email);
+        User user = userService.findUserByEmail(email);
         return ResponseEntity.ok().body(user);
     }
 

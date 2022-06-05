@@ -19,8 +19,12 @@ export class UserService {
     return this.http.get<User[]>(this.apiURL);
   }
 
-  getuserById(id: number | undefined): Observable<User> {
+  getUserById(id: number | undefined): Observable<User> {
     return this.http.get<User>(this.apiURL +`/${id}`);
+  }
+
+  getUserByEmail(email: string | undefined): Observable<User> {
+    return this.http.get<User>(this.apiURL + `/email/${email}`)
   }
 
   save(user: User): Observable<User> {
