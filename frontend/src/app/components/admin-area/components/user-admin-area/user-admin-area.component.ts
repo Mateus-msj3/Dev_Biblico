@@ -39,9 +39,9 @@ export class UserAdminAreaComponent implements OnInit {
 
   emailFilter!: string;
 
-  text: any;
+  nameFilter!: string;
 
-  results: any;
+  resultsUsersByUsername: User[] = [];
 
   filterByName: boolean = false;
 
@@ -63,10 +63,12 @@ export class UserAdminAreaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getUsers();
+    debugger
+    //this.getUsers();
     this.paramsRoute();
-    this.filterByName = true
-    this.optionSelected = this.options[0]
+    this.filterByName = true;
+    this.optionSelected = this.options[0];
+    this.getUsers();
   }
 
   paramsRoute() {
@@ -83,21 +85,30 @@ export class UserAdminAreaComponent implements OnInit {
   }
 
   getUsers() {
-    this.userService.getUser().subscribe(response => {
+    this.userService.getUser().then(response => {
       this.users = response;
     });
   }
 
   selectTypeFilter(event: MouseEvent) {
-    debugger
     if (this.optionSelected == this.options[0]) {
       this.filterByEmail = false;
       this.filterByName = true
 
-    }else if(this.optionSelected == this.options[1]) {
+    } else if (this.optionSelected == this.options[1]) {
       this.filterByName = false;
       this.filterByEmail = true;
     }
+  }
+
+  showDetailsOneUser(user: User) {
+    this.enabledFormEditOneUser = true;
+
+    this.user.id = user.id;
+    this.user.username = user.username;
+    this.user.email = user.email;
+    this.user.password = user.password;
+    this.user.role = user.role;
   }
 
   filterUserByEmail() {
@@ -105,15 +116,9 @@ export class UserAdminAreaComponent implements OnInit {
     if (this.emailFilter == undefined) {
       //Fazer um dialog de informação
       this.sucessDialog = true
-    }else {
+    } else {
       this.userService.getUserByEmail(this.emailFilter).subscribe(sucessResponse => {
-        this.enabledFormEditOneUser = true;
-
-        this.user.id = sucessResponse.id;
-        this.user.username = sucessResponse.username;
-        this.user.email = sucessResponse.email;
-        this.user.password = sucessResponse.password;
-        this.user.role = sucessResponse.role;
+        this.showDetailsOneUser(sucessResponse)
 
       }, errorResponse => {
         console.log("Usuário não encontrado!");
@@ -121,6 +126,31 @@ export class UserAdminAreaComponent implements OnInit {
     }
 
   }
+
+  filterUserByName(event: any) {
+    debugger
+    //lista
+    let filtered: any[] = [];
+    let query = event.query;
+    //requisição
+    this.userService.getUserByUsername(this.nameFilter).then(users => {
+      filtered = users;
+    });
+
+    for (let i = 0; i < this.users.length; i++) {
+      let user: any = this.users[i];
+      if (user.username.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+        filtered.push(user);
+      }
+    }
+
+    this.resultsUsersByUsername = filtered;
+  }
+
+  onSelectedUserByName(event: any) {
+    this.showDetailsOneUser(event);
+  }
+
 
   saveUser() {
     debugger
@@ -233,7 +263,4 @@ export class UserAdminAreaComponent implements OnInit {
     this.display2 = true;
   }
 
-  search($event: any) {
-
-  }
 }

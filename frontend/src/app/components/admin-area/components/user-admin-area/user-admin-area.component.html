@@ -9,6 +9,8 @@
       <h3>Filtro de Usuários</h3>
     </div>
 
+    <!--                  OPTIONS FILTERS CHECKBOXS              -->
+
     <div *ngFor="let option of options" class="field-checkbox">
 
       <p-radioButton [inputId]="option.key"
@@ -21,11 +23,16 @@
 
     </div>
 
+    <!--                 FIELDS AND BUTTONS OF FILTERS              -->
+
     <div class="col-12 md:col-4 p-fluid " *ngIf="filterByName">
       <span class="p-float-label">
-        <p-autoComplete [(ngModel)]="text"
-                        [suggestions]="results"
-                        (completeMethod)="search($event)"
+        <p-autoComplete [(ngModel)]="nameFilter"
+                        [suggestions]="resultsUsersByUsername"
+                        (completeMethod)="filterUserByName($event)"
+                        (onSelect)="onSelectedUserByName($event)"
+                        field="username"
+                        [minLength]="1"
                         id="nomeFilter">
         </p-autoComplete>
         <label for="nomeFilter">Nome</label>
@@ -67,7 +74,8 @@
     <!--                  CARD LIST ONE USER              -->
     <div class="container">
       <div class="p-grid">
-        <p-card header="Info User" [style]="{width: '600px'}" styleClass="p-card-shadow" *ngIf="enabledFormEditOneUser">
+        <p-card header="Info User" [style]="{width: '600px'}" styleClass="p-card-shadow"
+                *ngIf="enabledFormEditOneUser">
           <ng-template pTemplate="header">
           </ng-template>
 
@@ -101,7 +109,6 @@
                         [disabled]="enabledFiledsEditOneUser">
             </p-dropdown>
           </div>
-
 
           <ng-template pTemplate="footer">
             <p-button label="Editar" icon="pi pi-check" (click)="enabledEditOneUser(user)"></p-button>

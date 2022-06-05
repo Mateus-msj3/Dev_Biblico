@@ -15,8 +15,15 @@ export class UserService {
 
   }
 
-  getUser():Observable<User[]> {
-    return this.http.get<User[]>(this.apiURL);
+  // getUser():Observable<User[]> {
+  //   return this.http.get<User[]>(this.apiURL);
+  // }
+
+  getUser(){
+    return this.http.get<User[]>(this.apiURL)
+      .toPromise()
+      .then(res => <User[]> res)
+      .then(data => { return data });
   }
 
   getUserById(id: number | undefined): Observable<User> {
@@ -24,7 +31,18 @@ export class UserService {
   }
 
   getUserByEmail(email: string | undefined): Observable<User> {
-    return this.http.get<User>(this.apiURL + `/email/${email}`)
+    return this.http.get<User>(this.apiURL + `/email/${email}`);
+  }
+
+  // getUserByUsername(username: string | undefined): Observable<User[]> {
+  //   return this.http.get<User[]>(this.apiURL + `/username/${username}`);
+  // }
+
+  getUserByUsername(username: string | undefined){
+    return this.http.get<User[]>(this.apiURL + `/username/${username}`)
+      .toPromise()
+      .then(res => <any[]> res)
+      .then(data => { return data });
   }
 
   save(user: User): Observable<User> {
