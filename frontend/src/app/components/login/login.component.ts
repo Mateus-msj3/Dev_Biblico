@@ -35,16 +35,24 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger
-    this.authService
-      .tryLogin(this.username, this.password).subscribe(response => {
+    this.authService.tryLogin(this.username, this.password).subscribe(response => {
         const access_token = JSON.stringify(response);
-        localStorage.setItem('access_token', access_token)
-      this.router.navigate(['/admin']);
+        localStorage.setItem('access_token', access_token);
+        this.router.navigate(['/admin']);
+
+        //Melhorar depois
+        let userLogged = this.authService.getUserAutheticated();
+
+        if (userLogged === 'admin') {
+          console.log(userLogged)
+          this.router.navigate(['/admin']);
+        }else {
+          this.router.navigate(['/devotional']);
+        }
 
     }, errorResponse =>{
         this.errors = ['Usuário ou senhas incorretos(s). ']
-      } )
+      } );
 
   }
 

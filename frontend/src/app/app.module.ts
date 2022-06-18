@@ -25,6 +25,7 @@ import {InputTextModule} from "primeng/inputtext";
 import {DialogModule} from "primeng/dialog";
 import {PasswordModule} from "primeng/password";
 import {DropdownModule} from "primeng/dropdown";
+import {UserAreaModule} from "./components/user-area/module/user.area.module";
 
 
 @NgModule({
@@ -54,7 +55,7 @@ import {DropdownModule} from "primeng/dropdown";
     DialogModule,
     PasswordModule,
     DropdownModule,
-
+    UserAreaModule,
   ],
   providers: [
     AuthService,
@@ -62,7 +63,6 @@ import {DropdownModule} from "primeng/dropdown";
   ],
   exports: [
     NavbarComponent,
-
   ],
   bootstrap: [AppComponent]
 })

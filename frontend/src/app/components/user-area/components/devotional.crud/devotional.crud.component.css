@@ -1,0 +1,25 @@
+.title-filter {
+  padding: 5px;
+  text-align: center;
+}
+
+.field-filter {
+  padding: 7px;
+}
+
+.gropup-buttons {
+  margin-bottom: 10px;
+}
+
+.label-data {
+  display: block;
+  padding: 5px;
+}
+
+.data-fields {
+  margin-bottom: 5px;
+}
+
+.calendar {
+  margin-right: 10px;
+}

@@ -1,0 +1,111 @@
+<app-navbar-user></app-navbar-user>
+<div class="container">
+
+  <div class="p-grid">
+
+    <div class="col-12 md:col-4 title-filter">
+      <h3>Filtro</h3>
+    </div>
+
+    <!--                 FIELDS AND BUTTONS OF FILTERS              -->
+
+    <div class="col-12 md:col-4 p-fluid field-filter" >
+      <span class="p-float-label">
+        <input pInputText type="text" id="emailFilter" />
+        <label for="emailFilter">Titulo</label>
+      </span>
+    </div>
+
+    <div class="col-12 md:col-4 data-fields" >
+      <label class="label-data">Data</label>
+      <p-calendar [showIcon]="true" inputId="icon" class="calendar"></p-calendar>
+
+      <button pButton pRipple
+              label="Pesquisar"
+              icon="pi pi-search"
+              iconPos="left"
+              class="p-button-primary calendar">
+      </button>
+
+      <button pButton pRipple
+              label="Listar Todos"
+              icon="pi pi-users"
+              class="p-button-secondary calendar">
+      </button>
+
+      <button pButton pRipple
+              label="Novo"
+              icon="pi pi-plus"
+              class="p-button-success">
+      </button>
+    </div>
+
+<!--    <div class="col-12 md:col-4" >-->
+
+<!--      <button pButton pRipple-->
+<!--              label="Pesquisar"-->
+<!--              icon="pi pi-search"-->
+<!--              iconPos="left"-->
+<!--              class="p-button-primary m-lg-1">-->
+<!--      </button>-->
+
+<!--      <button pButton pRipple-->
+<!--              label="Listar Todos"-->
+<!--              icon="pi pi-users"-->
+<!--              class="p-button-secondary m-lg-1">-->
+<!--      </button>-->
+
+<!--      <button pButton pRipple-->
+<!--              label="Novo"-->
+<!--              icon="pi pi-plus"-->
+<!--              class="p-button-success m-lg-1">-->
+<!--      </button>-->
+
+<!--    </div>-->
+
+
+
+  </div>
+
+  <div class="container" style="padding-bottom: 10px;">
+    <h3 class="text-center">Recents</h3>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <div class="card" >
+          <p-card header="Simple Card" [style]="{'margin-bottom': '2em', 'text-align': 'center'}">
+            <ng-template pTemplate="header">
+            </ng-template>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+              quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
+          </p-card>
+        </div>
+      </div>
+
+      <div class="col-sm">
+        <div class="card" >
+          <p-card header="Simple Card" [style]="{'margin-bottom': '2em', 'text-align': 'center'}">
+            <ng-template pTemplate="header">
+            </ng-template>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+              quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
+          </p-card>
+        </div>
+      </div>
+
+      <div class="col-sm">
+        <div class="card" >
+          <p-card header="Simple Card" [style]="{'margin-bottom': '2em', 'text-align': 'center'}">
+            <ng-template pTemplate="header">
+            </ng-template>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+              quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!</p>
+          </p-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
